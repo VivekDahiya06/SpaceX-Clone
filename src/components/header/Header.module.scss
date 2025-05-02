@@ -1,0 +1,67 @@
+@use 'src/styles/abstracts' as *;
+
+@mixin flex-box($direction){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    @include flex-box(row);
+    background-color: #000000;
+    color: #fff;
+    padding: 1em 2em;
+}
+
+.nav{
+    @include flex-box(row);
+    justify-content: space-between;
+    width: 100%;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.navbar_LeftSection{
+    @include flex-box(row);
+    gap: 2em;
+    margin-right: auto;
+    color: #fff;
+}
+
+
+.ul{
+    @include flex-box(row);
+    gap: 2em;
+    text-transform: uppercase;
+    li{
+        list-style: none;
+        cursor: pointer;
+        &::after{
+            content: '';
+            display: block;
+            width: 0%;
+            height: 2px;
+            background-color: $midpurple;
+            transition: width 0.3s ease-in-out;
+        }
+        &:hover{
+            color: $midpurple;
+            &::after{
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+.navbar_RightSection{
+    @include flex-box(row);
+    gap: 1em;
+    margin-left: auto;
+    ul{
+        gap: 1em;
+    }
+}
