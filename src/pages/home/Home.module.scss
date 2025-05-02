@@ -1,0 +1,15 @@
+@use "src/styles/abstracts" as *;
+@mixin flex-box($direction) {
+   display: flex;
+   flex-direction: $direction;
+   justify-content: center;
+   align-items: center;
+}
+
+
+
+.main{
+    height: 200vh;
+    padding: 2em 2em;
+    
+}

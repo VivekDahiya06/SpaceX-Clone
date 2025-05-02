@@ -1,6 +1,6 @@
-@use 'src/styles/abstracts' as *;
+@use "src/styles/abstracts" as *;
 
-@mixin flex-box($direction){
+@mixin flex-box($direction) {
     display: flex;
     flex-direction: $direction;
     justify-content: center;
@@ -9,59 +9,101 @@
 
 .header {
     @include flex-box(row);
+    width: 100%;
+    position: sticky;
     background-color: #000000;
     color: #fff;
     padding: 1em 2em;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    font-size: clamp(0.8rem, 1.5vw, 1.5rem);
 }
 
-.nav{
+.nav {
     @include flex-box(row);
     justify-content: space-between;
+    gap: 2em;
     width: 100%;
     list-style: none;
     margin-left: auto;
     margin-right: auto;
-    
 }
 
-.navbar_LeftSection{
+.navbar_LeftSection {
     @include flex-box(row);
     gap: 2em;
     margin-right: auto;
     color: #fff;
 }
 
+.navLink {
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
 
-.ul{
-    @include flex-box(row);
-    gap: 2em;
-    text-transform: uppercase;
-    li{
-        list-style: none;
-        cursor: pointer;
-        &::after{
-            content: '';
-            display: block;
-            width: 0%;
-            height: 2px;
-            background-color: $midpurple;
-            transition: width 0.3s ease-in-out;
-        }
-        &:hover{
-            color: $midpurple;
-            &::after{
-                width: 100%;
-            }
+    &::after {
+        content: "";
+        display: block;
+        width: 0%;
+        height: 2px;
+        background-color: $midpurple;
+        transition: width 0.3s ease-in-out;
+    }
+
+    &:hover {
+        color: $midpurple;
+
+        &::after {
+            width: 100%;
         }
     }
 }
 
+.ul {
+    @include flex-box(row);
+    gap: 2em;
+    text-transform: uppercase;
 
-.navbar_RightSection{
+    li {
+        list-style: none;
+        cursor: pointer;
+    }
+
+    @media screen and (width <=$breakpoint-sm) {
+        display: none;
+    }
+}
+
+.navbar_RightSection {
     @include flex-box(row);
     gap: 1em;
     margin-left: auto;
-    ul{
+
+    ul {
         gap: 1em;
+    }
+}
+
+.menuIcon {
+    background: transparent;
+
+    button {
+        background: transparent;
+        border: none;
+        outline: none;
+    }
+
+    display: block;
+
+    @media screen and (width >=$breakpoint-sm) {
+        display: none;
+    }
+}
+
+.active {
+    color: $midpurple;
+
+    &::after {
+        width: 100%;
     }
 }

@@ -1,0 +1,46 @@
+@use 'src/styles/abstracts' as *;
+
+@mixin flex-box($direction){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer{
+    @include flex-box(column);
+    background-color: #000000;
+    color: #fff;
+    padding: 1em 2em;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+}
+
+.footer_UpperSection{
+    @include flex-box(row);
+    width: 100%;
+    padding: 1em 0;
+    border-bottom: 1px solid #fff;
+}
+.ul{
+    @include flex-box(row);
+    width: 100%;
+    justify-content: start;
+    gap: 1.5em;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li{
+        cursor: pointer;
+    }
+    @media screen and (width < $breakpoint-sm) {
+        justify-content: center;
+    }
+}
+
+.footer_LowerSection{
+    @include flex-box(column);
+    width: 100%;
+    padding: 1em 0;
+}

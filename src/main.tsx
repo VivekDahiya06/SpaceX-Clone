@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App';
-import Landing from './pages/landing/Landing';
-import Capsule from './pages/capsule/Capsule';
-import Company from './pages/company/Company';
 import Not_Found from './pages/not_found/Not_FoundPage';
+import Home from './pages/home/Home';
+import About from './pages/about/About';
+import Crew from './pages/crew/Crew';
+import Rockets from './pages/rockets/Rockets';
+import Launches from './pages/launches/Launches';
+import StarLink from './pages/starlink/StarLink';
 
 export const routes = [
 	{
@@ -16,15 +19,27 @@ export const routes = [
 		children: [
 			{
 				path: '/',
-				element: <Landing />
+				element: <Home />
 			},
 			{
-				path: '/capsule',
-				element: <Capsule />
+				path: '/about',
+				element: <About />
 			},
 			{
-				path: '/company',
-				element: <Company />
+				path: '/crew',
+				element: <Crew />
+			},
+			{
+				path: '/rockets',
+				element: <Rockets />
+			},
+			{
+				path: '/launches',
+				element: <Launches />
+			},
+			{
+				path: '/starlink',
+				element: <StarLink />
 			}
 		]
 	}
