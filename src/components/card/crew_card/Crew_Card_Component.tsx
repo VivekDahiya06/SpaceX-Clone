@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import { BsWikipedia } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import classes from './Crew_Card.module.scss';
+import { Crew_Details_Type } from '../../../Types/Crew.types';
 
 interface Props {
     Crew: Crew_Details_Type;

@@ -4,6 +4,7 @@ import classes from './Crew.module.scss';
 import { Crew_API } from '../../API/Crew';
 import Card_Component from '../../components/card/crew_card/Crew_Card_Component';
 import { useState } from 'react';
+import { Crew_Details_Type } from '../../Types/Crew.types';
 
 const Crew = () => {
 
@@ -27,7 +28,7 @@ const Crew = () => {
   if (isLoading) {
     return (
       <main className={classes.loader}>
-        < Loader color="#848eff" size="xl" />;
+        <Loader color="#848eff" size="xl" />
       </main>
     )
   }

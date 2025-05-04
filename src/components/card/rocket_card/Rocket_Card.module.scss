@@ -15,8 +15,19 @@
     height: 50%;
 }
 
-.mantine-Image-root {
-    height: 100%;
+.content{
+    width: 100%;
+    height: 50%;
+    // margin-top: auto;
+}
+
+.info{
+    @include flex-box(column);
+    width: 100%;
+    justify-content: start;
+    align-items: start;
+    gap: 0.5em;
+    color: #fff;
 }
 
 .details code {
@@ -29,3 +40,4 @@
 .image {
     transition: all 0.4s ease-in-out;
 }
+

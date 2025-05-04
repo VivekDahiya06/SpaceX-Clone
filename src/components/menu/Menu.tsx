@@ -26,6 +26,7 @@ const Menu_Component: FC<Props> = ({ MenuItems }) => {
                 shadow="md"
                 position="bottom-end"
                 closeOnClickOutside={false}
+                zIndex={9999}
             >
                 <Menu.Target>
                     <Burger opened={opened} onClick={toggle} size={25} color="#848eff" />

@@ -1,6 +1,7 @@
 import { Loader } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query'
-import React from 'react';
+import classes from './StarLink.module.scss'
+import { useCounterStore } from '../../store/app.store';
 
 
 const Fetch_StarLink = async () => {
@@ -11,26 +12,40 @@ const Fetch_StarLink = async () => {
 const StarLink = () => {
 
   const { data, isLoading, error } = useQuery({
-        queryKey: ['starlink'],
-        queryFn: Fetch_StarLink
-      }
-      )
-    
-      console.log(data)
-    
-      if (isLoading) {
-        return <Loader color='#848eff' size={'xl'} />
-      }
-    
-      if (error) {
-        return <div>Error: </div>
+    queryKey: ['starlink'],
+    queryFn: Fetch_StarLink
   }
+  )
+
+  console.log(data)
+
+  if (isLoading) {
+    return (
+      <div className={classes.loader}>
+        <Loader color='#848eff' size={'xl'} />
+      </div>
+    )
+  }
+
+  if (error) {
+    return <div>Error: </div>
+  }
+
+  const {count,increment,decrement} = useCounterStore((state) => state);
   
 
+
   return (
-    <div>
+    <main className={classes.main}>
       This is StarLink Page
-    </div>
+      <div className={classes.counter}>
+        <h1>{count}</h1>
+        <div className={classes.buttons}>
+          <button onClick={increment}>+</button>
+          <button onClick={decrement}>-</button>
+        </div>
+      </div>
+    </main>
   )
 }
 

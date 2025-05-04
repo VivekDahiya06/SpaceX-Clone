@@ -67,7 +67,7 @@ interface Second_Stage {
     burn_time_sec: number
 }
 
-interface Rocket_Details_Type{
+export interface Rocket_Details_Type{
     id: string,
     name: string,
     active: boolean,
@@ -103,15 +103,4 @@ interface Rocket_Details_Type{
     engines: Engines,
     wikipedia: string,
     flickr_images: string[]
-}
-
-
-interface Crew_Details_Type {
-    name: string;
-    agency: string;
-    image: string;
-    wikipedia: string;
-    launches: string[];
-    status: string;
-    id: string;
 }

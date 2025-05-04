@@ -1,6 +1,7 @@
 import { Loader } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import classes from './Launches.module.scss'
+
 
 
 const Fetch_Launches = async () => {
@@ -19,7 +20,11 @@ const Launches = () => {
   console.log(data)
 
   if (isLoading) {
-    return <Loader color='#848eff' size={'xl'} />
+    return (
+      <main className={classes.loader}>
+        <Loader color='#848eff' size={'xl'} />
+      </main>
+    )
   }
 
   if (error) {
@@ -28,9 +33,9 @@ const Launches = () => {
 
 
   return (
-    <div>
+    <main className={classes.main}>
       This is Launches Page
-    </div>
+    </main>
   )
 }
 

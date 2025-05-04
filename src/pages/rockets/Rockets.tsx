@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Rockets_API } from '../../API/Rocket';
 import classes from './Rockets.module.scss';
 import Rocket_Card from '../../components/card/rocket_card/Rocket_Card_Component';
+import { Rocket_Details_Type } from '../../Types/Rocket.types';
 
 
 const Rockets = () => {
@@ -13,12 +14,10 @@ const Rockets = () => {
   }
   )
 
-  console.log(data)
-
   if (isLoading) {
     return (
       <main className={classes.loader}>
-        < Loader color='#848eff' size={'xl'} />
+        <Loader color='#848eff' size={'xl'} />
       </main>
     )
   }
