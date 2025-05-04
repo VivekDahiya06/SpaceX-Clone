@@ -1,7 +1,7 @@
 import { Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './Crew.module.scss';
-import { Crew_API } from '../../API/Crew';
+import { Crew_API } from '../../api/Crew';
 import Card_Component from '../../components/card/crew_card/Crew_Card_Component';
 import { useState } from 'react';
 import { Crew_Details_Type } from '../../Types/Crew.types';
