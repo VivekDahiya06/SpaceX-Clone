@@ -84,21 +84,7 @@
     }
 }
 
-.menuIcon {
-    background: transparent;
 
-    button {
-        background: transparent;
-        border: none;
-        outline: none;
-    }
-
-    display: block;
-
-    @media screen and (width >=$breakpoint-sm) {
-        display: none;
-    }
-}
 
 .active {
     color: $midpurple;
@@ -107,3 +93,5 @@
         width: 100%;
     }
 }
+
+

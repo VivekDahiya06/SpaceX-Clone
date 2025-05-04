@@ -1,17 +1,41 @@
+@use 'src/styles/abstracts' as *;
+
 @mixin flex-box($direction){
     display: flex;
     flex-direction: $direction;
     justify-content: center;
     align-items: center;
 }
-@use 'src/styles/abstracts' as *;
 
-.section{
-    @include flex-box(column);
-    width: clamp(100px, 10vw, 150px);
-    background-color: #000000;
+
+
+.menuIcon {
+    background: transparent;
+
+    button {
+        background: transparent;
+        border: none;
+        outline: none;
+    }
+
+    display: block;
+
+    @media screen and (width >=$breakpoint-sm) {
+        display: none;
+    }
+}
+
+
+.menuItems{
+    // @include flex-box(column);
+    gap: 5em;
     color: #fff;
-    padding: 1em 2em;
-    border: 2px solid #fff;
-    font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+
+}
+
+.menuDropdown{
+    @include flex-box(column);
+    background-color: #000;
+    color: #fff;
+    gap: 5em;
 }

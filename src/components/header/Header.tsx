@@ -1,96 +1,75 @@
 import { FC } from "react";
 import classes from "./Header.module.scss";
-import { Image } from "@mantine/core";
-import { IoMenu } from "react-icons/io5";
+import { useDisclosure } from "@mantine/hooks";
+import { Burger, Image, Menu } from "@mantine/core";
 import { Link, NavLink } from "react-router-dom";
+import Header_Menu from "../menu/Menu";
+import Menu_Component from "../menu/Menu";
 
 const Header: FC = () => {
-
-  
   // Constants
-  const Navbar_List_Items = [
-    {
-      name: 'About',
-      url: '/about'
-    },
-    {
-      name: 'Crew',
-      url: '/crew'
-    },
-    {
-      name: 'Rockets',
-      url: '/rockets'
-    },
-    {
-      name: 'Launches',
-      url: '/launches'
-    },
-    {
-      name: 'StarLink',
-      url: '/starlink'
-    }
+  const Navbar_Items = [
+    { name: "About", url: "/about" },
+    { name: "Crew", url: "/crew" },
+    { name: "Rockets", url: "/rockets" },
+    { name: "Launches", url: "/launches" },
+    { name: "StarLink", url: "/starlink" },
+  ];
 
-  ]
-
-
-  // Functions
-  const handle_MobileMenu = () => {
-    console.log("Mobile Menu Clicked")
-  }
 
 
   return (
     <header className={classes.header}>
       <nav className={classes.nav}>
-
-        {/*  Left Section  */}
+        {/* Left Section */}
         <div className={`Navbar_LeftSection ${classes.navbar_LeftSection}`}>
           <div className={classes.logo}>
             <Link to="/">
-              <Image src="/images/logo.png" styles={{ image: { width: "100%", maxWidth: "200px" } }} />
+              <Image
+                src="/images/logo.png"
+                style={{ width: "100%", maxWidth: "200px" }}
+                alt="Logo"
+              />
             </Link>
           </div>
           <ul className={classes.ul}>
-            {
-              Navbar_List_Items.map((item, index) => {
-                return (
-                  <NavLink
-                    key={index}
-                    to={item.url}
-                    className={({ isActive }) =>
-                      `${classes.navLink} ${isActive ? classes.active : ''}`
-                    }
-                  >
-                    <li>{item.name}</li>
-                  </NavLink>
-                )
-              })
-            }
+            {Navbar_Items.map((item, index) => (
+              <li key={index}>
+                <NavLink
+                  to={item.url}
+                  className={({ isActive }) =>
+                    `${classes.navLink} ${isActive ? classes.active : ""}`
+                  }
+                >
+                  {item.name}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </div>
 
-
-        {/*  Right Section  */}
+        {/* Right Section */}
         <div className={`Navbar_RightSection ${classes.navbar_RightSection}`}>
           <ul className={classes.ul}>
-            <NavLink to="/login" className={classes.navLink}>
-              <li>Log In</li>
-            </NavLink>
-            <NavLink to="/signup" className={classes.navLink}>
-              <li>Sign Up</li>
-            </NavLink>
+            <li>
+              <NavLink to="/login" className={classes.navLink}>
+                Log In
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/signup" className={classes.navLink}>
+                Sign Up
+              </NavLink>
+            </li>
           </ul>
         </div>
 
-        {/* Menu Icon (for Mobile Screens) */}
-        <div className={classes.menuIcon}>
-          <button onClick={handle_MobileMenu}>
-            <IoMenu size={20} color={'#fff'} />
-          </button>
-        </div>
+        {/* Mobile Menu Icon */}
+        <Menu_Component MenuItems={Navbar_Items} />
+        
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

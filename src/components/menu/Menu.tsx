@@ -1,20 +1,48 @@
+import { Burger, Menu } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import React, { FC } from 'react'
+import { NavLink } from 'react-router-dom';
+import classes from './Menu.module.scss'
 
 interface MenuItem {
     name: string
     url: string
 }
 
-const Menu: FC<MenuItem[]> = (MenuItem) => {
-    return (
-        <section>
-            <ul>
-                {
+const Menu_Component: FC<{ MenuItems: MenuItem[] }> = ({ MenuItems }) => {
 
-                }
-            </ul>
-        </section>
+    // States
+    const [opened, { toggle }] = useDisclosure();
+
+    return (
+        <div className={classes.menuIcon}>
+            <Menu
+                withArrow
+                arrowPosition="center"
+                width={200}
+                shadow="md"
+                position="bottom-end"
+                closeOnClickOutside={false}
+            >
+                <Menu.Target>
+                    <Burger opened={opened} onClick={toggle} size={25} color="#848eff" />
+                </Menu.Target>
+                <Menu.Dropdown className={classes.menuDropdown}>
+                    {MenuItems.map((item, index) => (
+                        <Menu.Item key={index} component={NavLink} to={item.url} className={classes.menuItems} onClick={toggle}>
+                            {item.name}
+                        </Menu.Item>
+                    ))}
+                    <Menu.Item component={NavLink} to="/login" className={classes.menuItems}>
+                        Log In
+                    </Menu.Item>
+                    <Menu.Item component={NavLink} to="/signup" className={classes.menuItems}>
+                        Sign Up
+                    </Menu.Item>
+                </Menu.Dropdown>
+            </Menu>
+        </div>
     )
 }
 
-export default Menu
+export default Menu_Component;
