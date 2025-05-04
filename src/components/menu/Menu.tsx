@@ -4,12 +4,15 @@ import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom';
 import classes from './Menu.module.scss'
 
-interface MenuItem {
-    name: string
-    url: string
+
+interface Props {
+    MenuItems: {
+        name: string
+        url: string
+    }[]
 }
 
-const Menu_Component: FC<{ MenuItems: MenuItem[] }> = ({ MenuItems }) => {
+const Menu_Component: FC<Props> = ({ MenuItems }) => {
 
     // States
     const [opened, { toggle }] = useDisclosure();

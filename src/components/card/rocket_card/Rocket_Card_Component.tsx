@@ -7,7 +7,7 @@ import {
    Text,
    Transition,
  } from "@mantine/core";
- import React, { FC, useState } from "react";
+ import { FC, useState } from "react";
  import classes from "./Rocket_Card.module.scss";
  import { Link } from "react-router-dom";
  import { BsWikipedia } from "react-icons/bs";
