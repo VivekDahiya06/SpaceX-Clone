@@ -16,9 +16,9 @@ interface Links {
         large: string;
     };
     reddit: {
-        campaign: string | null;
+        campaign: string;
         launch: string | null;
-        media: string | null;
+        media: string;
         recovery: string | null;
     };
     flickr: {

@@ -1,8 +1,10 @@
-import { Badge, Image, Modal, Switch, Text } from '@mantine/core';
+import { ActionIcon, Badge, Image, Modal, Switch, Text } from '@mantine/core';
 import React, { FC, useState } from 'react';
 import { Rocket_Details_Type } from '../../../Types/Rocket.types';
 import { useRocketStore } from '../../../store/Rocket.store';
 import classes from './Rocket_Modal.module.scss'
+import { BsWikipedia } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 
 interface Props{
@@ -84,6 +86,18 @@ const Rocket_Modal: FC<Props> = ({ Rocket }) => {
                         <Text><code>Fairing Diameter:</code>
                             <mark>{metricSystem ? `${Rocket.second_stage.payloads.composite_fairing.diameter.meters} m` : `${Rocket.second_stage.payloads.composite_fairing.diameter.feet} ft`}</mark>
                         </Text>
+
+                        <div className={classes.externalLinks}>
+                            <ActionIcon
+                                radius="xl"
+                                component={Link}
+                                to={Rocket.wikipedia}
+                                size={50}
+                                style={{ background: "#000000dd" }}
+                            >
+                                <BsWikipedia size={30} color={"#ffffff"} />
+                            </ActionIcon>
+                        </div>
 
                     </div>
                 </div>

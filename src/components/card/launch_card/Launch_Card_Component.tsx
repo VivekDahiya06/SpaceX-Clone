@@ -10,17 +10,23 @@ import {
 import { FC, useState } from "react";
 import classes from './Launch_Card.module.scss';
 import { Link } from "react-router-dom";
-import { BsWikipedia } from "react-icons/bs";
+import { BsWikipedia, BsYoutube } from "react-icons/bs";
 // import Carousel_Component from "../../carousel/Carousel_Component";
 import { Launch_Details_Type } from "../../../Types/Launch.types";
+import { useLaunchStore } from "../../../store/Launch.store";
 
 interface Props {
   Launch: Launch_Details_Type;
+  index: number
 }
 
-const Launch_Card: FC<Props> = ({ Launch }) => {
-    console.log(Launch);
+const Launch_Card: FC<Props> = ({ Launch, index }) => {
+
+  const toggleModal = useLaunchStore(state => state.toggleModal);
+  const setModalIndex = useLaunchStore(state => state.setModalIndex);
   const [hovered, setHovered] = useState<boolean>(false);
+
+  console.log('cores', Launch.cores);
 
   return (
     <Card
@@ -102,18 +108,32 @@ const Launch_Card: FC<Props> = ({ Launch }) => {
                   alignItems: "end",
                 }}
               >
-                <Button size="xs" variant="white">
+                <Button size="xs" variant="white" onClick={() => {
+                  toggleModal();
+                  setModalIndex(index)
+                }}>
                   Show More
                 </Button>
-                <ActionIcon
-                  bg={"#e8e8e8dd"}
-                  radius="xl"
-                  component={Link}
-                  to={Launch.links.wikipedia}
-                  size={30}
-                >
-                  <BsWikipedia size={15} color={"#000"} />
-                </ActionIcon>
+                <div className={classes.externalLinks}>
+                  <ActionIcon
+                    bg={"#e8e8e8dd"}
+                    radius="xl"
+                    component={Link}
+                    to={Launch.links.wikipedia}
+                    size={30}
+                  >
+                    <BsWikipedia size={15} color={"#000"} />
+                  </ActionIcon>
+                  <ActionIcon
+                    bg={"#e8e8e8dd"}
+                    radius="xl"
+                    component={Link}
+                    to={Launch.links.webcast}
+                    size={30}
+                  >
+                    <BsYoutube size={15} color={"#000"} />
+                  </ActionIcon>
+                </div>
               </div>
             </div>
           </div>

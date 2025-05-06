@@ -11,8 +11,7 @@ import Rocket_Modal from '../../components/modal/rocket_Modal/Rocket_Modal_Compo
 
 const Rockets = () => {
 
-
-  const showModal = useRocketStore(state => state.showModal);
+  
   const modalIndex = useRocketStore(state => state.modalIndex);
   const { data, isLoading, error } = useQuery({
     queryKey: ['rockets'],
@@ -35,9 +34,7 @@ const Rockets = () => {
   return (
     <main className={classes.main}>
       <div className={classes.filter}>
-        {
-          showModal ? 'true' : 'false'
-        }
+        Filter
       </div>
       <div className={classes.cards}>
         {data.map((Rocket: Rocket_Details_Type, index: number) => (

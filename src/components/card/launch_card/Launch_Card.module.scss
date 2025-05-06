@@ -41,3 +41,9 @@
     transition: all 0.4s ease-in-out;
 }
 
+.externalLinks{
+    @include flex-box(row);
+    width: 100%;
+    justify-content: end;
+    gap: 0.5em;
+}
