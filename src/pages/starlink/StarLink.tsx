@@ -1,18 +1,20 @@
 import { Loader } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query'
 import classes from './StarLink.module.scss'
+import { StarLink_API } from '../../api/StarLink';
+import { StarLink_Details_Type } from '../../Types/StarLink.types';
+import StarLink_Card from '../../components/card/starlink_card/StarLink_Card_Component';
 
 
-const Fetch_StarLink = async () => {
-  const response = await fetch('https://api.spacexdata.com/v4/starlink');
-  return response.json();
-}
 
 const StarLink = () => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['starlink'],
-    queryFn: Fetch_StarLink
+    queryFn: StarLink_API.get_All_StarLink,
+    select: (data) => data.filter(
+      (starLink: StarLink_Details_Type)=> starLink.latitude !== null && starLink.longitude !== null
+    )
   }
   )
 
@@ -35,7 +37,14 @@ const StarLink = () => {
 
   return (
     <main className={classes.main}>
-      This is StarLink Page
+      <div className={classes.filter}>
+        This is filter
+      </div>
+      <div className={classes.cards}>
+        {data.map((StarLink: StarLink_Details_Type, index: number) => (
+          <StarLink_Card key={index} StarLink={StarLink} />
+        ))}
+      </div>
     </main>
   )
 }

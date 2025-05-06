@@ -1,11 +1,13 @@
 @use 'src/styles/abstracts' as *;
-@mixin flex-box($direction){
+
+@mixin flex-box($direction) {
     display: flex;
     flex-direction: $direction;
     justify-content: center;
     align-items: center;
 }
-.main{
+
+.main {
     @include flex-box(column);
     padding: 0.5em 2em 2em 2em;
     overflow-y: auto;
@@ -14,19 +16,19 @@
     width: 100%;
 }
 
-.filter{
+.filter {
     width: 100%;
     border: 2px solid black;
 }
 
-.cards{
+.cards {
     @include flex-box(row);
     flex-wrap: wrap;
     gap: 2em;
     width: 100%;
 }
 
-.loader{
+.loader {
     @include flex-box(row);
     width: 100%;
     height: 100vh;

@@ -1,0 +1,43 @@
+@mixin flex-box($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    @include flex-box(column);
+    width: 100%;
+    gap: 0.5em;
+    padding: 0 1em;
+}
+
+.modalSwitch {
+    @include flex-box(row);
+    width: 100%;
+    justify-content: end;
+}
+
+.modalContent {
+    @include flex-box(column);
+    margin-top: 1em;
+    padding: auto;
+    width: 100%;
+}
+
+.modalDetails {
+    @include flex-box(column);
+    align-items: start;
+    gap: 0.2em;
+}
+
+
+.modalDetails {
+    code {
+        font-weight: 600;
+    }
+
+    mark {
+        text-transform: capitalize;
+    }
+}

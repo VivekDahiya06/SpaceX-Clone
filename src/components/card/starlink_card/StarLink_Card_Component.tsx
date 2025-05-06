@@ -1,38 +1,22 @@
-import {
-  ActionIcon,
-  Badge,
-  Button,
-  Card,
-  Image,
-  Text,
-  Transition,
-} from "@mantine/core";
 import { FC, useState } from "react";
-import classes from "./Rocket_Card.module.scss";
-import { Link } from "react-router-dom";
-import { BsWikipedia } from "react-icons/bs";
-// import Carousel_Component from "../../carousel/Carousel_Component";
-import { Rocket_Details_Type } from "../../../Types/Rocket.types";
-import { useRocketStore } from "../../../store/Rocket.store";
+import { StarLink_Details_Type } from "../../../Types/StarLink.types";
+import { Button, Card, Image, Text, Transition } from "@mantine/core";
+import classes from './StarLink_Card.module.scss';
+import satellite from '/images/satellite_background.png';
 
 interface Props {
-  Rocket: Rocket_Details_Type;
-  index: number;
+StarLink: StarLink_Details_Type
 }
-
-const Rocket_Card: FC<Props> = ({ Rocket, index }) => {
-
-  // States
-  const toggleModal = useRocketStore(state => state.toggleModal);
-  const setModalIndex = useRocketStore(state => state.setModalIndex);
+const StarLink_Card: FC<Props> = ({ StarLink }) => {
+  
   const [hovered, setHovered] = useState<boolean>(false);
-
   return (
     <Card
       shadow="xl"
       padding="lg"
       radius="md"
       withBorder
+      className={classes.card}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -49,28 +33,19 @@ const Rocket_Card: FC<Props> = ({ Rocket, index }) => {
       {/* Card Section to show Image or Carousel */}
       <Card.Section>
         <Image
-          src={Rocket.flickr_images[0]}
+          src={satellite}
+          opacity={0.2}
           height={450}
-          alt={Rocket.name}
+          alt={"Satellite"}
           fit='cover'
           className={classes.image}
           style={{ transform: hovered ? 'scale(1)' : 'scale(1.15)' }}
         />
       </Card.Section>
-
-
-      {/* Details showed in case of Hover */}
-      <Transition
-        mounted={hovered}
-        transition="fade"
-        duration={400}
-        timingFunction="ease-in-out"
-      >
-        {(TransitionStyles) => (
+        
           <div
             className={classes.details}
             style={{
-              ...TransitionStyles,
               zIndex: 1,
               padding: '1em',
               position: 'absolute',
@@ -81,47 +56,56 @@ const Rocket_Card: FC<Props> = ({ Rocket, index }) => {
               width: '100%',
               height: '100%',
               display: 'flex',
-              alignItems: 'end',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}>
             <div className={classes.content}>
               <div className={classes.info}>
                 <Text>
-                  <code>Name:</code> <mark>{Rocket.name}</mark>
+                  <code>ID:</code> <span>{StarLink.spaceTrack.OBJECT_ID}</span>
                 </Text>
                 <Text>
-                  <code>Company:</code> <mark>{Rocket.company}</mark>
+                  <code>Name:</code> <span>{StarLink.spaceTrack.OBJECT_NAME}</span>
                 </Text>
                 <Text>
+                  <code>Latitude:</code> <span>{StarLink.latitude.toFixed(3)}</span>
+                </Text>
+                <Text>
+                  <code>Longitude:</code> <span>{StarLink.longitude.toFixed(3)}</span>
+                </Text>
+                {/* <Text>
                   <code>Active:</code>{" "}
-                  <Badge color={Rocket.active ? "green" : "red"}>
-                    {Rocket.active ? "Yes" : "No"}
+                  <Badge color={StarLink.active ? "green" : "red"}>
+                    {StarLink.active ? "Yes" : "No"}
                   </Badge>
-                </Text>
+                </Text> */}
               </div>
 
-              <div className={classes.buttons}>
-                <Button size="xs" variant="white" onClick={() => {
-                  toggleModal();
-                  setModalIndex(index)
-                }}>
+              <div
+                style={{
+                  marginTop: "20px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "end",
+                }}
+              >
+                <Button size="xs" variant="white">
                   Show More
                 </Button>
-                <ActionIcon
+                {/* <ActionIcon
                   bg={"#e8e8e8dd"}
                   radius="xl"
                   component={Link}
-                  to={Rocket.wikipedia}
+                  to={StarLink.wikipedia}
                   size={30}
                 >
                   <BsWikipedia size={15} color={"#000"} />
-                </ActionIcon>
+                </ActionIcon> */}
               </div>
             </div>
           </div>
-        )}
-      </Transition>
     </Card>
-  );
-};
+  )
+}
 
-export default Rocket_Card;
+export default StarLink_Card;

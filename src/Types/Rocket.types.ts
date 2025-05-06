@@ -96,7 +96,6 @@ export interface Rocket_Details_Type{
         number: number,
         material: string
     }
-
     payload_weights: Payload_Weights[],
     first_stage: First_Stage,
     second_stage: Second_Stage,
