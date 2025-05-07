@@ -1,7 +1,5 @@
-
-import classes from "./Footer.module.scss";
 import { BsTwitterX, BsLinkedin, BsInstagram, BsGithub } from "react-icons/bs";
-
+import classes from "./Footer.module.scss";
 const Footer = () => {
     return (
         <footer className={classes.footer}>

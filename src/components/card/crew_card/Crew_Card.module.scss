@@ -19,18 +19,31 @@
     height: 100%;
 }
 
-.details code {
-    text-transform: uppercase;
-    font-weight: 600;
-    color: #ffffff;
-    letter-spacing: 0.5px;
+.details {
+    @include flex-box(column);
+    width: 100%;
+    height: 100%;
+    justify-content: end;
+    align-items: start;
+    gap: 0.5em;
+    color: #fff;
+
+    code {
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+    }
 }
 
 .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: all 0.4s ease-in-out;
 }
 
-.buttons{
+.buttons {
     @include flex-box(row);
     width: 100%;
     justify-content: end;

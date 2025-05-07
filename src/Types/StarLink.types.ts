@@ -52,5 +52,3 @@ export interface StarLink_Details_Type {
     version: string;
     spaceTrack: SpaceTrack;
 }
-
-

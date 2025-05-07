@@ -1,4 +1,4 @@
-import { ActionIcon, Badge, Card, Image, Text, Transition } from '@mantine/core';
+import { ActionIcon, Badge, Card, Text, Transition } from '@mantine/core';
 import { FC, useState } from 'react';
 import { BsWikipedia } from "react-icons/bs";
 import { Link } from 'react-router-dom';
@@ -9,8 +9,11 @@ interface Props {
     Crew: Crew_Details_Type;
 }
 
-const Card_Component: FC<Props> = ({ Crew }) => {
+const Crew_Card: FC<Props> = ({ Crew }) => {
+
+    // States
     const [hovered, setHovered] = useState<boolean>(false);
+    
 
     return (
         <Card
@@ -22,13 +25,11 @@ const Card_Component: FC<Props> = ({ Crew }) => {
             onMouseOut={() => setHovered(false)}
             style={{ width: 400, height: 450, display: 'flex', flexDirection: 'column', cursor: 'pointer', position: 'relative' }}
         >
-            {/* Image section - 50% height */}
-            <Card.Section style={{ height: '80%' }}>
-                <Image
+            <Card.Section>
+                <img
                     src={Crew.image}
-                    height="100%"
-                    alt="Crew"
-                    fit="cover"
+                    alt={Crew.name}
+                    loading='lazy'
                     className={classes.image}
                     style={hovered ? { transform: 'scale(1)' } : { transform: 'scale(1.15)' }}
                 />
@@ -41,9 +42,9 @@ const Card_Component: FC<Props> = ({ Crew }) => {
             >
                 {(TransitionStyles) => (
                     <div
-                        className={classes.details}
+                        className={classes.content}
                         style={{ ...TransitionStyles, zIndex: 1, padding: '1em', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: '#0000009a', width: '100%', height: '100%' }}>
-                        <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'end', alignItems: 'start', gap: '0.5em', color: '#fff' }}>
+                        <div className={classes.details}>
                             <Text><code>Name:</code> <mark>{Crew.name}</mark></Text>
                             <Text><code>Agency:</code> <mark>{Crew.agency}</mark></Text>
                             <Text><code>Status:</code> <Badge color={Crew.status === 'active' ? 'green' : 'red'}>{Crew.status}</Badge></Text>
@@ -59,4 +60,4 @@ const Card_Component: FC<Props> = ({ Crew }) => {
     );
 };
 
-export default Card_Component;
+export default Crew_Card;

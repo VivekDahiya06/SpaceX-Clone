@@ -1,17 +1,8 @@
-import {
-  ActionIcon,
-  Badge,
-  Button,
-  Card,
-  Image,
-  Text,
-  Transition,
-} from "@mantine/core";
-import { FC, useState } from "react";
+import { ActionIcon, Badge, Button, Card, Text, Transition } from "@mantine/core";
+import React, { FC, useState } from "react";
 import classes from './Launch_Card.module.scss';
 import { Link } from "react-router-dom";
 import { BsWikipedia, BsYoutube } from "react-icons/bs";
-// import Carousel_Component from "../../carousel/Carousel_Component";
 import { Launch_Details_Type } from "../../../Types/Launch.types";
 import { useLaunchStore } from "../../../store/Launch.store";
 
@@ -22,11 +13,18 @@ interface Props {
 
 const Launch_Card: FC<Props> = ({ Launch, index }) => {
 
+  // States
   const toggleModal = useLaunchStore(state => state.toggleModal);
   const setModalIndex = useLaunchStore(state => state.setModalIndex);
   const [hovered, setHovered] = useState<boolean>(false);
 
-  console.log('cores', Launch.cores);
+
+  // Functions
+  const handle_Details = (index: number) => {
+    setModalIndex(index);
+    toggleModal();
+  }
+
 
   return (
     <Card
@@ -49,11 +47,10 @@ const Launch_Card: FC<Props> = ({ Launch, index }) => {
 
       {/* Card Section to show Image or Carousel */}
       <Card.Section>
-        <Image
+        <img
           src={Launch.links.flickr.original[0] || Launch.links.flickr.small[0]}
-          height={450}
+          loading="lazy"
           alt={Launch.name}
-          fit='cover'
           className={classes.image}
           style={{ transform: hovered ? 'scale(1)' : 'scale(1.15)' }}
         />
@@ -90,7 +87,7 @@ const Launch_Card: FC<Props> = ({ Launch, index }) => {
                   <code>Name:</code> <mark>{Launch.name}</mark>
                 </Text>
                 <Text>
-                  <code>Date(UTC):</code> <mark>{Launch.date_utc}</mark>
+                  <code>Date(UTC):</code> <mark>{new Date(Launch.date_utc).toUTCString()}</mark>
                 </Text>
                 <Text>
                   <code>Upcoming:</code>{" "}
@@ -100,18 +97,8 @@ const Launch_Card: FC<Props> = ({ Launch, index }) => {
                 </Text>
               </div>
 
-              <div
-                style={{
-                  marginTop: "30px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "end",
-                }}
-              >
-                <Button size="xs" variant="white" onClick={() => {
-                  toggleModal();
-                  setModalIndex(index)
-                }}>
+              <div className={classes.buttons}>
+                <Button size="xs" variant="white" onClick={() => handle_Details(index)}>
                   Show More
                 </Button>
                 <div className={classes.externalLinks}>

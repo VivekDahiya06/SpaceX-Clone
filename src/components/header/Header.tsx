@@ -1,9 +1,7 @@
 import { FC } from "react";
 import classes from "./Header.module.scss";
-import { useDisclosure } from "@mantine/hooks";
-import { Burger, Image, Menu } from "@mantine/core";
+import { Image } from "@mantine/core";
 import { Link, NavLink } from "react-router-dom";
-import Header_Menu from "../menu/Menu";
 import Menu_Component from "../menu/Menu";
 
 const Header: FC = () => {
@@ -25,9 +23,10 @@ const Header: FC = () => {
         <div className={`Navbar_LeftSection ${classes.navbar_LeftSection}`}>
           <div className={classes.logo}>
             <Link to="/">
-              <Image
+              <img
                 src="/images/logo.png"
-                style={{ width: "100%", maxWidth: "200px" }}
+                loading="lazy"
+                className={classes.image}
                 alt="Logo"
               />
             </Link>

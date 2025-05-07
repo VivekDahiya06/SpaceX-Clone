@@ -12,3 +12,64 @@
     width: 100%;
     height: 100vh;
 }
+
+.main{
+    @include flex-box(row);
+    width: 100%;
+    padding: 1em;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+.section{
+    @include flex-box(row);
+    width: 100%;
+    height: 100%;
+    padding: 0em 1em;
+    align-items: start;
+    gap: 1em;
+
+    @media screen and (width <= $breakpoint-sm) {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.imageContainer{
+    @include flex-box(row);
+    flex: 1;
+    height: 100%;
+    align-items: start;
+    justify-content: start;
+}
+
+.image{
+    width: clamp(300px, 40vw, 500px);
+    height: clamp(300px, 40vw, 500px);
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.content{
+    padding: 0em 1em;
+    @include flex-box(column);
+    flex: 1;
+    max-height: 100%;
+    justify-content: start;
+    align-items: start;
+    gap: 0.3em;
+}
+
+.externalLinks{
+    margin-top: 1em;
+    @include flex-box(row);
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    gap: 1em;
+
+    a{
+        font-size: clamp(13px, 1.5vw, 18px);
+    }
+
+    
+}

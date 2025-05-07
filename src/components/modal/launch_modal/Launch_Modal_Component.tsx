@@ -1,11 +1,10 @@
-import { ActionIcon, Badge, Image, Modal, Switch, Text } from '@mantine/core';
-import React, { FC, useState } from 'react';
+import { ActionIcon, Badge, Modal, Text } from '@mantine/core';
+import { FC } from 'react';
 import { useLaunchStore } from '../../../store/Launch.store';
 import classes from './Launch_Modal.module.scss'
 import { Launch_Details_Type } from '../../../Types/Launch.types';
 import { BsWikipedia, BsYoutube } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-
 
 interface Props {
     Launch: Launch_Details_Type
@@ -17,13 +16,16 @@ const Launch_Modal: FC<Props> = ({ Launch }) => {
     const showModal = useLaunchStore(state => state.showModal);
     const toggleModal = useLaunchStore(state => state.toggleModal);
 
-    
-
     return (
         <Modal opened={showModal} onClose={toggleModal} z-index={11} size={'lg'} title={<Text fw={900} size="xl">{Launch.name}</Text>}>
             <section className={classes.modal}>
                 <div>
-                    <Image src={Launch.links.flickr.original[0]} width={400} height={450} fit='cover' />
+                    <img
+                        src={Launch.links.flickr.original[0]}
+                        alt={Launch.name}
+                        className={classes.modalImage}
+                        loading='lazy'
+                    />
                 </div>
                 <div className={classes.modalContent}>
                     <div className={classes.modalDetails}>
@@ -36,14 +38,9 @@ const Launch_Modal: FC<Props> = ({ Launch }) => {
                         <Text><code>Launch Date(Local):</code> <mark>{new Date(Launch.date_local).toLocaleString()}</mark></Text>
                         <Text><code>Static Fire Date(UTC):</code> <mark>{new Date(Launch.static_fire_date_utc).toUTCString()}</mark></Text>
                         <Text><code>Launch Date Precision:</code> <mark>{Launch.date_precision}</mark></Text>
-
                         <Text><code>Launch Success: </code><mark>{Launch.success ? "Yes" : "No"}</mark></Text>
-                        <Text><code>Failures: </code>
-                            <mark>{Launch.failures.length}</mark>
-                        </Text>
-                        <Text><code>Crew Members: </code>
-                            <mark>{Launch.crew.length}</mark>
-                        </Text>
+                        <Text><code>Failures: </code><mark>{Launch.failures.length}</mark></Text>
+                        <Text><code>Crew Members: </code><mark>{Launch.crew.length}</mark></Text>
 
                         {/* Cores */}
                         <Text fw={800} mt="xl" size="lg">Core Stage</Text>
@@ -54,7 +51,8 @@ const Launch_Modal: FC<Props> = ({ Launch }) => {
                         <Text><code>Reused: </code><mark>{Launch.cores[0].reused ? 'Yes' : 'No'}</mark></Text>
                         <Text><code>Landing Attempt: </code><mark>{Launch.cores[0].landing_attempt ? 'Yes' : 'No'}</mark></Text>
                         <Text><code>Landing Success: </code><mark>{Launch.cores[0].landing_success ? 'Yes' : 'No'}</mark></Text>
-                        { Launch.cores[0].landing_type && <Text><code>Landing Type: </code><mark>{Launch.cores[0].landing_type}</mark></Text> }
+                        {Launch.cores[0].landing_type && <Text><code>Landing Type: </code><mark>{Launch.cores[0].landing_type}</mark></Text>}
+                        
                         <div className={classes.externalLinks}>
                             <ActionIcon
                                 radius="xl"

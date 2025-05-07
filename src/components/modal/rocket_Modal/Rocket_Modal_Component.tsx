@@ -1,11 +1,10 @@
 import { ActionIcon, Badge, Image, Modal, Switch, Text } from '@mantine/core';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { Rocket_Details_Type } from '../../../Types/Rocket.types';
 import { useRocketStore } from '../../../store/Rocket.store';
 import classes from './Rocket_Modal.module.scss'
 import { BsWikipedia } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-
 
 interface Props{
     Rocket: Rocket_Details_Type
@@ -31,7 +30,12 @@ const Rocket_Modal: FC<Props> = ({ Rocket }) => {
                         onChange={(e) => { useMetricSystem(e.currentTarget.checked) }} />
                 </div>
                 <div>
-                    <Image src={Rocket.flickr_images[0]} height={350} fit='cover' />
+                    <img
+                        src={Rocket.flickr_images[0]}
+                        alt={Rocket.name}
+                        className={classes.modalImage}
+                        loading='lazy'
+                    />
                 </div>
                 <div className={classes.modalContent}>
                     <div className={classes.modalDetails}>

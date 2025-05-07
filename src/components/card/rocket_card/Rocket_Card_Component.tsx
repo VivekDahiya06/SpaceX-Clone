@@ -1,17 +1,8 @@
-import {
-  ActionIcon,
-  Badge,
-  Button,
-  Card,
-  Image,
-  Text,
-  Transition,
-} from "@mantine/core";
+import { ActionIcon, Badge, Button, Card, Text, Transition } from "@mantine/core";
 import { FC, useState } from "react";
 import classes from "./Rocket_Card.module.scss";
 import { Link } from "react-router-dom";
 import { BsWikipedia } from "react-icons/bs";
-// import Carousel_Component from "../../carousel/Carousel_Component";
 import { Rocket_Details_Type } from "../../../Types/Rocket.types";
 import { useRocketStore } from "../../../store/Rocket.store";
 
@@ -26,6 +17,13 @@ const Rocket_Card: FC<Props> = ({ Rocket, index }) => {
   const toggleModal = useRocketStore(state => state.toggleModal);
   const setModalIndex = useRocketStore(state => state.setModalIndex);
   const [hovered, setHovered] = useState<boolean>(false);
+
+
+    // Functions
+    const handle_Details = (index: number) => {
+      setModalIndex(index);
+      toggleModal();
+    }
 
   return (
     <Card
@@ -48,11 +46,10 @@ const Rocket_Card: FC<Props> = ({ Rocket, index }) => {
 
       {/* Card Section to show Image or Carousel */}
       <Card.Section>
-        <Image
+        <img
           src={Rocket.flickr_images[0]}
-          height={450}
           alt={Rocket.name}
-          fit='cover'
+          loading="lazy"
           className={classes.image}
           style={{ transform: hovered ? 'scale(1)' : 'scale(1.15)' }}
         />
@@ -100,10 +97,7 @@ const Rocket_Card: FC<Props> = ({ Rocket, index }) => {
               </div>
 
               <div className={classes.buttons}>
-                <Button size="xs" variant="white" onClick={() => {
-                  toggleModal();
-                  setModalIndex(index)
-                }}>
+                <Button size="xs" variant="white" onClick={() => handle_Details(index)}>
                   Show More
                 </Button>
                 <ActionIcon

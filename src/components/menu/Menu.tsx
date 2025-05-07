@@ -1,6 +1,6 @@
 import { Burger, Menu } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { NavLink } from 'react-router-dom';
 import classes from './Menu.module.scss'
 

@@ -1,22 +1,42 @@
-import { Loader } from '@mantine/core';
+import { Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './Launches.module.scss';
 import { Launches_API } from '../../api/Launch';
-import Launch_Card from '../../components/card/launch_card/Launch_Card_Component';
 import { Launch_Details_Type } from '../../Types/Launch.types';
-import React from 'react';
-import Launch_Modal from '../../components/modal/launch_modal/Launch_Modal_Component';
+import React, { useMemo, useState } from 'react';
 import { useLaunchStore } from '../../store/Launch.store';
 
-const Launches = () => {
+// Lazy Components
+const Launch_Card = React.lazy(() => import('../../components/card/launch_card/Launch_Card_Component'));
+const Launch_Modal = React.lazy(() => import('../../components/modal/launch_modal/Launch_Modal_Component'));
 
+const Launches = () => {
   const modalIndex = useLaunchStore(state => state.modalIndex);
+  const [page, setPage] = useState<number>(1);
+  const itemsPerPage = 12;
+
   const { data, isLoading, error } = useQuery({
     queryKey: ['launches'],
     queryFn: Launches_API.get_All_Launches,
+    select: (data) =>
+      data.filter(
+        (launch: Launch_Details_Type) =>
+          launch.links.flickr.original.length > 0 ||
+          launch.links.flickr.small.length > 0
+      ),
+    keepPreviousData: true
   });
 
-  // console.log(data);
+  const paginatedData = useMemo(() => {
+    if (!data) return [];
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return data.slice(start, end);
+  }, [data, page]);
+
+  const totalPages = useMemo(() => {
+    return data ? Math.ceil(data.length / itemsPerPage) : 1;
+  }, [data]);
 
   if (isLoading) {
     return (
@@ -34,23 +54,26 @@ const Launches = () => {
     <main className={classes.main}>
       <div className={classes.filter}>This is filter</div>
       <div className={classes.cards}>
-        {data
-          ?.filter(
-            (launch: Launch_Details_Type) =>
-              launch.links.flickr.original.length > 0 ||
-              launch.links.flickr.small.length > 0
-          )
-          .map((Launch: Launch_Details_Type, index: number) => (
-            <React.Fragment key={index}>
-              <Launch_Card Launch={Launch} index={index} />
-              {
-                modalIndex === index && (
-                  <Launch_Modal Launch={Launch} />
-                )
-              }
+        {paginatedData.map((Launch: Launch_Details_Type, index: number) => {
+          const globalIndex = (page - 1) * itemsPerPage + index;
+          return (
+            <React.Fragment key={globalIndex}>
+              <Launch_Card Launch={Launch} index={globalIndex} />
+              {modalIndex === globalIndex && <Launch_Modal Launch={Launch} />}
             </React.Fragment>
-          ))}
+          );
+        })}
       </div>
+
+      <Pagination
+        total={totalPages}
+        value={page}
+        onChange={setPage}
+        mt="xl"
+        color="black"
+        size={'md'}
+        radius="md"
+      />
     </main>
   );
 };
