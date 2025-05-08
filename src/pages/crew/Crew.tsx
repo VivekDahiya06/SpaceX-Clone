@@ -1,11 +1,17 @@
 import { Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './Crew.module.scss';
-import Crew_API from '../../api/Crew.ts';
+// import Crew_API from '../../api/Crew.ts';
 import React, { Suspense, useMemo, useState } from 'react';
 import { Crew_Details_Type } from '../../Types/Crew.types.ts';
+import { api } from '../../api/Axios.ts';
 
 const Crew_Card = React.lazy(() => import('../../components/card/crew_card/Crew_Card_Component'));
+
+const get_All_Crew = async () => {
+  const response = await api.get('/v4/crew');
+  return response.data;
+}
 
 const Crew = () => {
   const [page, setPage] = useState<number>(1);
@@ -13,7 +19,7 @@ const Crew = () => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['crew'],
-    queryFn: Crew_API.get_All_Crew,
+    queryFn: get_All_Crew,
     keepPreviousData: true
   });
 

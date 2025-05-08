@@ -5,10 +5,17 @@ import StarLink_API from '../../api/StarLink.ts';
 import { StarLink_Details_Type } from '../../Types/StarLink.types.ts';
 import { useStarLinkStore } from '../../store/StarLink.store.ts';
 import React, { useMemo, useState } from 'react';
+import { api } from '../../api/Axios.ts';
 
 // Lazy Components
 const StarLink_Card = React.lazy(() => import('../../components/card/starlink_card/StarLink_Card_Component'));
 const StarLink_Modal = React.lazy(() => import('../../components/modal/starlink_modal/StarLink_Modal_Component'));
+
+
+const get_All_StarLink = async () => {
+  const response = await api.get('/v4/starlink');
+  return response.data;
+}
 
 const StarLink = () => {
 
@@ -21,7 +28,7 @@ const StarLink = () => {
   const [page, setPage] = useState<number>(1);
   const { data, isLoading, error } = useQuery({
     queryKey: ['starlink'],
-    queryFn: StarLink_API.get_All_StarLink,
+    queryFn: get_All_StarLink,
     select: (data) =>
       data.filter(
         (starLink: StarLink_Details_Type) =>
