@@ -4,12 +4,13 @@ import classes from './Crew.module.scss';
 // import Crew_API from '../../api/Crew.ts';
 import React, { Suspense, useMemo, useState } from 'react';
 import { Crew_Details_Type } from '../../Types/Crew.types.ts';
-import { api } from '../../api/Axios.ts';
+// import { api } from '../../api/Axios.ts';
+import axios from 'axios';
 
 const Crew_Card = React.lazy(() => import('../../components/card/crew_card/Crew_Card_Component'));
 
 const get_All_Crew = async () => {
-  const response = await api.get('/v4/crew');
+  const response = await axios.get('https://api.spacexdata.com/v4/crew');
   return response.data;
 }
 

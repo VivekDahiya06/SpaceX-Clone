@@ -1,11 +1,12 @@
 import { Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './StarLink.module.scss';
-import StarLink_API from '../../api/StarLink.ts';
+// import StarLink_API from '../../api/StarLink.ts';
 import { StarLink_Details_Type } from '../../Types/StarLink.types.ts';
 import { useStarLinkStore } from '../../store/StarLink.store.ts';
 import React, { useMemo, useState } from 'react';
-import { api } from '../../api/Axios.ts';
+// import { api } from '../../api/Axios.ts';
+import axios from 'axios';
 
 // Lazy Components
 const StarLink_Card = React.lazy(() => import('../../components/card/starlink_card/StarLink_Card_Component'));
@@ -13,7 +14,7 @@ const StarLink_Modal = React.lazy(() => import('../../components/modal/starlink_
 
 
 const get_All_StarLink = async () => {
-  const response = await api.get('/v4/starlink');
+  const response = await axios.get('https://api.spacexdata.com/v4/starlink');
   return response.data;
 }
 

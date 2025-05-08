@@ -5,14 +5,15 @@ import classes from './Launches.module.scss';
 import { Launch_Details_Type } from '../../Types/Launch.types.ts';
 import React, { useMemo, useState } from 'react';
 import { useLaunchStore } from '../../store/Launch.store.ts';
-import { api } from '../../api/Axios.ts';
+import axios from 'axios';
+// import { api } from '../../api/Axios.ts';
 
 // Lazy Components
 const Launch_Card = React.lazy(() => import('../../components/card/launch_card/Launch_Card_Component'));
 const Launch_Modal = React.lazy(() => import('../../components/modal/launch_modal/Launch_Modal_Component'));
 
 const get_All_Launches = async () => {
-  const response = await api.get('/v5/launches');
+  const response = await axios.get('https://api.spacexdata.com/v5/launches');
   return response.data;
 }
 

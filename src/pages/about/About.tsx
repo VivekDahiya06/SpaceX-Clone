@@ -4,11 +4,12 @@ import classes from './About.module.scss';
 // import About_API from '../../api/About.ts';
 import { About_Details_Type } from '../../Types/About.types.ts';
 import { BsTwitterX } from "react-icons/bs";
-import { api } from '../../api/Axios.ts';
+// import { api } from '../../api/Axios.ts';
+import axios from 'axios';
 
 
 const get_About_Company = async () => {
-  const response = await api.get('/v4/company');
+  const response = await axios.get('https://api.spacexdata.com/v4/company');
   return response.data;
 }
 

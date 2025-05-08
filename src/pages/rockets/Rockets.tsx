@@ -1,18 +1,19 @@
 import { Loader } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
-import Rockets_API from '../../api/Rocket.ts';
+// import Rockets_API from '../../api/Rocket.ts';
 import classes from './Rockets.module.scss';
 import { Rocket_Details_Type } from '../../Types/Rocket.types.ts';
 import { useRocketStore } from '../../store/Rocket.store.ts';
 import React from 'react';
-import { api } from '../../api/Axios.ts';
+// import { api } from '../../api/Axios.ts';
+import axios from 'axios';
 
 const Rocket_Card = React.lazy(() => import('../../components/card/rocket_card/Rocket_Card_Component'));
 const Rocket_Modal = React.lazy(() => import('../../components/modal/rocket_Modal/Rocket_Modal_Component'));
 
 
 const get_All_Rockets = async () => {
-  const response = await api.get('/v4/rockets');
+  const response = await axios.get('https://api.spacexdata.com/v4/rockets');
   return response.data;
 }
 
