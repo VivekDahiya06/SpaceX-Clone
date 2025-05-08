@@ -1,7 +1,7 @@
 import { Burger, Menu } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { FC } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import classes from './Menu.module.scss'
 
 
@@ -16,6 +16,13 @@ const Menu_Component: FC<Props> = ({ MenuItems }) => {
 
     // States
     const [opened, { toggle }] = useDisclosure();
+    const navigate = useNavigate()
+
+    const handleLogOut = () => {
+        document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+        navigate('/login', { replace: true });
+    }
+    
 
     return (
         <div className={classes.menuIcon}>
@@ -36,8 +43,8 @@ const Menu_Component: FC<Props> = ({ MenuItems }) => {
                             {item.name}
                         </Menu.Item>
                     ))}
-                    <Menu.Item component={NavLink} to="/login" className={classes.menuItems}>
-                        Log In
+                    <Menu.Item onClick={handleLogOut}  className={classes.menuItems}>
+                        {document.cookie.includes('session=active') ? "Log Out" : "Log In"}
                     </Menu.Item>
                     <Menu.Item component={NavLink} to="/signup" className={classes.menuItems}>
                         Sign Up
