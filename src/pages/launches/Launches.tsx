@@ -60,7 +60,7 @@ const Launches = () => {
 
   return (
     <main className={classes.main}>
-      <div className={classes.filter}>This is filter</div>
+      {/* <div className={classes.filter}>This is filter</div> */}
       <div className={classes.cards}>
         {
           paginatedData.map((Launch: Launch_Details_Type, index: number) => {

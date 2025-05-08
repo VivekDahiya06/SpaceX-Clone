@@ -59,7 +59,7 @@ const StarLink = () => {
 
   return (
     <main className={classes.main}>
-      <div className={classes.filter}>This is filter</div>
+      {/* <div className={classes.filter}>This is filter</div> */}
       <div className={classes.cards}>
         {
           paginatedData.map((StarLink: StarLink_Details_Type, index: number) => {

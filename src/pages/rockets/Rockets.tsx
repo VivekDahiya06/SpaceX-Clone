@@ -35,9 +35,9 @@ const Rockets = () => {
 
   return (
     <main className={classes.main}>
-      <div className={classes.filter}>
+      {/* <div className={classes.filter}>
         Filter
-      </div>
+      </div> */}
       <div className={classes.cards}>
         {
           data.map((Rocket: Rocket_Details_Type, index: number) => (

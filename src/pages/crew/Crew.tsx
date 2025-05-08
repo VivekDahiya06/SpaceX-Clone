@@ -47,7 +47,7 @@ const Crew = () => {
       </main>
     }>
       <main className={classes.main}>
-        <div className={classes.filter}>This is filter</div>
+        {/* <div className={classes.filter}>This is filter</div> */}
         <div className={classes.cards}>
           {paginatedData.map((Crew: Crew_Details_Type, index: number) => (
             <Crew_Card key={index} Crew={Crew} />

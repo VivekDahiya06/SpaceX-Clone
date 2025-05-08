@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classes from './Signup.module.scss';
 import Login_image from '/images/Login.webp';
-import { Alert, Button, Input, Text, Transition } from '@mantine/core';
+import { ActionIcon, Alert, Button, Input, Text, Transition } from '@mantine/core';
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -73,11 +73,11 @@ const Signup = () => {
             name="password"
             required
             rightSection={
-              <div style={{ cursor: 'pointer' }} onClick={() => setShowPassword(!showPassword)}>
+              <ActionIcon variant='outlined' size='xl' style={{ cursor: 'pointer' }} onClick={() => setShowPassword(!showPassword)}>
                 {
-                  showPassword ? <IoIosEyeOff size={20} /> : <IoIosEye size={20} />
+                  showPassword ? <IoIosEyeOff size={25} /> : <IoIosEye size={25} />
                 }
-              </div>
+              </ActionIcon>
             }
             value={userDetails.password}
             onChange={handleChange}
