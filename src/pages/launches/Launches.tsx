@@ -1,7 +1,7 @@
 import { Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './Launches.module.scss';
-import { Launches_API } from '../../api/Launch';
+import { Launches_API } from '../../api/Launch.ts';
 import { Launch_Details_Type } from '../../Types/Launch.types';
 import React, { useMemo, useState } from 'react';
 import { useLaunchStore } from '../../store/Launch.store';

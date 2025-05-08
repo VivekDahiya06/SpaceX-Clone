@@ -1,6 +1,6 @@
 import { Loader } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
-import { Rockets_API } from '../../api/Rocket';
+import { Rockets_API } from '../../api/Rocket.ts';
 import classes from './Rockets.module.scss';
 import { Rocket_Details_Type } from '../../Types/Rocket.types';
 import { useRocketStore } from '../../store/Rocket.store';
