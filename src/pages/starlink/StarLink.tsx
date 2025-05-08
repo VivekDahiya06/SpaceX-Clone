@@ -1,7 +1,7 @@
 import { Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './StarLink.module.scss';
-import { StarLink_API } from '../../api/StarLink.ts';
+import { StarLink_API } from '../../api/StarLink';
 import { StarLink_Details_Type } from '../../Types/StarLink.types.ts';
 import { useStarLinkStore } from '../../store/StarLink.store.ts';
 import React, { useMemo, useState } from 'react';
