@@ -1,18 +1,18 @@
-import { StrictMode, Suspense } from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App';
-import Not_Found from './pages/not_found/Not_FoundPage';
+import Not_Found from './pages/auth/not_found/Not_FoundPage';
 import Home from './pages/home/Home';
 import About from './pages/about/About';
 import Crew from './pages/crew/Crew';
 import Rockets from './pages/rockets/Rockets';
 import Launches from './pages/launches/Launches';
 import StarLink from './pages/starlink/StarLink';
-import Login from './pages/login/Login';
-import Signup from './pages/signup/Signup';
-import ProtectedRoute from './components/auth/ProtectedRoute';
+import Login from './pages/auth/login/Login';
+import Signup from './pages/auth/signup/Signup';
+import ProtectedRoute from './components/common/auth/ProtectedRoute';
 
 export const routes = [
 	{

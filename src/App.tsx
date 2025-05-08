@@ -3,8 +3,8 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Loader, MantineProvider } from '@mantine/core';
 import { theme } from './theme';
 import './App.scss';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import Header from './components/common/header/Header';
+import Footer from './components/common/footer/Footer';
 
 export default function App() {
 	const { pathname } = useLocation();

@@ -14,9 +14,44 @@
     width: 100%;
 }
 
-.filter{
+.filterContainer {
+    @include flex-box(column);
     width: 100%;
-    border: 2px solid black;
+    gap: 0.5em;
+}
+
+.filter {
+    @include flex-box(column);
+    padding: 0.5em 0.8em;
+    width: 100%;
+    height: 8vh;
+    border: 3px solid rgba(202, 202, 202, 0.911);
+    border-radius: 8px;
+}
+
+.filterButtons{
+    @include flex-box(row);
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+    gap: 1em;
+}
+
+.filterInputContainer{
+    @include flex-box(row);
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+    gap: 1em;
+
+    input{
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1.5rem;
+        width: 800px;
+        max-width: 100%;
+    }
 }
 
 .cards{

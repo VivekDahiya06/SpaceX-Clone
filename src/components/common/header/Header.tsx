@@ -60,7 +60,7 @@ const Header: FC = () => {
         <div className={`Navbar_RightSection ${classes.navbar_RightSection}`}>
           <ul className={classes.ul}>
             <li onClick={handleLogOut} className={classes.navLink}>
-                {document.cookie.includes('session=active') ? "Log Out" : "Log In"}
+              {document.cookie.includes('session=active') ? "Log Out" : "Log In"}
             </li>
             <li>
               <NavLink to="/signup" className={classes.navLink}>
@@ -72,7 +72,7 @@ const Header: FC = () => {
 
         {/* Mobile Menu Icon */}
         <Menu_Component MenuItems={Navbar_Items} />
-        
+
       </nav>
     </header>
   );
