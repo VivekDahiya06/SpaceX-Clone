@@ -1,12 +1,9 @@
+import axios from 'axios';
 import { Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './Crew.module.scss';
-// import Crew_API from '../../api/Crew.ts';
 import React, { Suspense, useMemo, useState } from 'react';
 import { Crew_Details_Type } from '../../Types/Crew.types.ts';
-// import { api } from '../../api/Axios.ts';
-import axios from 'axios';
-
 const Crew_Card = React.lazy(() => import('../../components/card/crew_card/Crew_Card_Component'));
 
 const get_All_Crew = async () => {
@@ -15,15 +12,21 @@ const get_All_Crew = async () => {
 }
 
 const Crew = () => {
-  const [page, setPage] = useState<number>(1);
+
+  // Constants
   const itemsPerPage = 12;
 
+
+  // States
+  const [page, setPage] = useState<number>(1);
   const { data, isLoading, error } = useQuery({
     queryKey: ['crew'],
     queryFn: get_All_Crew,
     keepPreviousData: true
   });
 
+
+  // Functions
   const paginatedData = useMemo(() => {
     if (!data) return [];
     const start = (page - 1) * itemsPerPage;
@@ -35,6 +38,8 @@ const Crew = () => {
     return data ? Math.ceil(data.length / itemsPerPage) : 1;
   }, [data]);
 
+
+  // JSX Render Components
   if (isLoading) {
     return (
       <main className={classes.loader}>

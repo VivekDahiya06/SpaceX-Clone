@@ -1,11 +1,9 @@
+import axios from 'axios';
 import { ActionIcon, Loader, Text, Title } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './About.module.scss';
-// import About_API from '../../api/About.ts';
 import { About_Details_Type } from '../../Types/About.types.ts';
 import { BsTwitterX } from "react-icons/bs";
-// import { api } from '../../api/Axios.ts';
-import axios from 'axios';
 
 
 const get_About_Company = async () => {
@@ -15,13 +13,15 @@ const get_About_Company = async () => {
 
 const About = () => {
 
-
+  // States
   const { data, isLoading, error } = useQuery({
     queryKey: ['about'],
     queryFn: get_About_Company,
     select: (data: About_Details_Type) => data,
   });
 
+
+  // JSX Render Components
   if (isLoading) {
     return (
       <main className={classes.loader}>

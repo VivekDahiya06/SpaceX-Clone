@@ -1,14 +1,10 @@
 import { Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './StarLink.module.scss';
-// import StarLink_API from '../../api/StarLink.ts';
 import { StarLink_Details_Type } from '../../Types/StarLink.types.ts';
 import { useStarLinkStore } from '../../store/StarLink.store.ts';
 import React, { useMemo, useState } from 'react';
-// import { api } from '../../api/Axios.ts';
 import axios from 'axios';
-
-// Lazy Components
 const StarLink_Card = React.lazy(() => import('../../components/card/starlink_card/StarLink_Card_Component'));
 const StarLink_Modal = React.lazy(() => import('../../components/modal/starlink_modal/StarLink_Modal_Component'));
 
@@ -67,7 +63,6 @@ const StarLink = () => {
 
   return (
     <main className={classes.main}>
-      {/* <div className={classes.filter}>This is filter</div> */}
       <div className={classes.cards}>
         {
           paginatedData.map((StarLink: StarLink_Details_Type, index: number) => {

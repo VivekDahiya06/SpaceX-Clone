@@ -1,14 +1,10 @@
+import axios from 'axios';
 import { Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './Launches.module.scss';
-// import Launches_API from '../../api/Launch.ts';
 import { Launch_Details_Type } from '../../Types/Launch.types.ts';
 import React, { useMemo, useState } from 'react';
 import { useLaunchStore } from '../../store/Launch.store.ts';
-import axios from 'axios';
-// import { api } from '../../api/Axios.ts';
-
-// Lazy Components
 const Launch_Card = React.lazy(() => import('../../components/card/launch_card/Launch_Card_Component'));
 const Launch_Modal = React.lazy(() => import('../../components/modal/launch_modal/Launch_Modal_Component'));
 
@@ -67,7 +63,6 @@ const Launches = () => {
 
   return (
     <main className={classes.main}>
-      {/* <div className={classes.filter}>This is filter</div> */}
       <div className={classes.cards}>
         {
           paginatedData.map((Launch: Launch_Details_Type, index: number) => {
