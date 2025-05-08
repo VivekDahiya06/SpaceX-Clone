@@ -2,7 +2,7 @@ import { ActionIcon, Loader, Text, Title } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './About.module.scss';
 import { About_API } from '../../api/About.ts';
-import { About_Details_Type } from '../../Types/About.types';
+import { About_Details_Type } from '../../Types/About.types.ts';
 import { BsTwitterX } from "react-icons/bs";
 
 const About = () => {

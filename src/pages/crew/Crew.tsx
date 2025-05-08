@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import classes from './Crew.module.scss';
 import { Crew_API } from '../../api/Crew.ts';
 import React, { Suspense, useMemo, useState } from 'react';
-import { Crew_Details_Type } from '../../Types/Crew.types';
+import { Crew_Details_Type } from '../../Types/Crew.types.ts';
 
 const Crew_Card = React.lazy(() => import('../../components/card/crew_card/Crew_Card_Component'));
 
