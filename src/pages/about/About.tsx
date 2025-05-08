@@ -1,14 +1,23 @@
 import { ActionIcon, Loader, Text, Title } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './About.module.scss';
-import About_API from '../../api/About.ts';
+// import About_API from '../../api/About.ts';
 import { About_Details_Type } from '../../Types/About.types.ts';
 import { BsTwitterX } from "react-icons/bs";
+import { api } from '../../api/Axios.ts';
+
+
+const get_About_Company = async () => {
+  const response = await api.get('/v4/company');
+  return response.data;
+}
 
 const About = () => {
+
+
   const { data, isLoading, error } = useQuery({
     queryKey: ['about'],
-    queryFn: About_API.get_About_Company,
+    queryFn: get_About_Company,
     select: (data: About_Details_Type) => data,
   });
 

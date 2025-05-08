@@ -5,9 +5,17 @@ import classes from './Rockets.module.scss';
 import { Rocket_Details_Type } from '../../Types/Rocket.types.ts';
 import { useRocketStore } from '../../store/Rocket.store.ts';
 import React from 'react';
+import { api } from '../../api/Axios.ts';
 
 const Rocket_Card = React.lazy(() => import('../../components/card/rocket_card/Rocket_Card_Component'));
 const Rocket_Modal = React.lazy(() => import('../../components/modal/rocket_Modal/Rocket_Modal_Component'));
+
+
+const get_All_Rockets = async () => {
+  const response = await api.get('/v4/rockets');
+  return response.data;
+}
+
 
 const Rockets = () => {
 
@@ -16,7 +24,7 @@ const Rockets = () => {
   const modalIndex = useRocketStore(state => state.modalIndex);
   const { data, isLoading, error } = useQuery({
     queryKey: ['rockets'],
-    queryFn: Rockets_API.get_All_Rockets,
+    queryFn: get_All_Rockets,
   })
 
 
