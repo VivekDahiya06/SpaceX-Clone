@@ -1,7 +1,7 @@
 import { Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './Crew.module.scss';
-import { Crew_API } from '../../api/Crew.ts';
+import Crew_API from '../../api/Crew.ts';
 import React, { Suspense, useMemo, useState } from 'react';
 import { Crew_Details_Type } from '../../Types/Crew.types.ts';
 

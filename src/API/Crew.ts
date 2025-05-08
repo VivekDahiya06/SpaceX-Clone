@@ -1,6 +1,6 @@
 import { api } from "./Axios";
 
-export const Crew_API = {
+const Crew_API = {
     get_All_Crew: async () => {
         const response = await api.get('/v4/crew');
         return response.data;
@@ -17,3 +17,5 @@ export const Crew_API = {
     },
 
 }
+
+export default Crew_API;
