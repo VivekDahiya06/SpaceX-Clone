@@ -11,10 +11,14 @@ const StarLink_Card = React.lazy(() => import('../../components/card/starlink_ca
 const StarLink_Modal = React.lazy(() => import('../../components/modal/starlink_modal/StarLink_Modal_Component'));
 
 const StarLink = () => {
-  const modalIndex = useStarLinkStore(state => state.modalIndex);
-  const [page, setPage] = useState<number>(1);
+
+  // Constants
   const itemsPerPage = 12;
 
+
+  // States
+  const modalIndex = useStarLinkStore(state => state.modalIndex);
+  const [page, setPage] = useState<number>(1);
   const { data, isLoading, error } = useQuery({
     queryKey: ['starlink'],
     queryFn: StarLink_API.get_All_StarLink,
@@ -26,6 +30,8 @@ const StarLink = () => {
     keepPreviousData: true
   });
 
+
+  // Functions
   const paginatedData = useMemo(() => {
     if (!data) return [];
     const start = (page - 1) * itemsPerPage;
@@ -37,6 +43,8 @@ const StarLink = () => {
     return data ? Math.ceil(data.length / itemsPerPage) : 1;
   }, [data]);
 
+
+  // JSX Render Components
   if (isLoading) {
     return (
       <main className={classes.loader}>
@@ -53,19 +61,24 @@ const StarLink = () => {
     <main className={classes.main}>
       <div className={classes.filter}>This is filter</div>
       <div className={classes.cards}>
-        {paginatedData.map((StarLink: StarLink_Details_Type, index: number) => {
-          const globalIndex = (page - 1) * itemsPerPage + index;
-          return (
-            <React.Fragment key={globalIndex}>
-              <StarLink_Card StarLink={StarLink} index={globalIndex} />
-              {modalIndex === globalIndex && (
-                <StarLink_Modal StarLink={StarLink} />
-              )}
-            </React.Fragment>
-          );
-        })}
+        {
+          paginatedData.map((StarLink: StarLink_Details_Type, index: number) => {
+            const globalIndex = (page - 1) * itemsPerPage + index;
+            return (
+              <React.Fragment key={globalIndex}>
+                <StarLink_Card StarLink={StarLink} index={globalIndex} />
+                {
+                  modalIndex === globalIndex && (
+                    <StarLink_Modal StarLink={StarLink} />
+                  )
+                }
+              </React.Fragment>
+            );
+          })
+        }
       </div>
 
+      {/* Pagination Component */}
       <Pagination
         total={totalPages}
         value={page}

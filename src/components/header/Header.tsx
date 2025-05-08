@@ -1,7 +1,6 @@
 import { FC } from "react";
 import classes from "./Header.module.scss";
-import { Image } from "@mantine/core";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Menu_Component from "../menu/Menu";
 
 const Header: FC = () => {
@@ -14,6 +13,16 @@ const Header: FC = () => {
     { name: "StarLink", url: "/starlink" },
   ];
 
+
+  // States
+  const navigate = useNavigate();
+
+
+  // Functions
+  const handleLogOut = () => {
+    document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+    navigate('/login', { replace: true });
+  }
 
 
   return (
@@ -50,10 +59,8 @@ const Header: FC = () => {
         {/* Right Section */}
         <div className={`Navbar_RightSection ${classes.navbar_RightSection}`}>
           <ul className={classes.ul}>
-            <li>
-              <NavLink to="/login" className={classes.navLink}>
-                Log In
-              </NavLink>
+            <li onClick={handleLogOut} className={classes.navLink}>
+                {document.cookie.includes('session=active') ? "Log Out" : "Log In"}
             </li>
             <li>
               <NavLink to="/signup" className={classes.navLink}>

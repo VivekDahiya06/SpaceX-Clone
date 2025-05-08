@@ -10,6 +10,9 @@ import Crew from './pages/crew/Crew';
 import Rockets from './pages/rockets/Rockets';
 import Launches from './pages/launches/Launches';
 import StarLink from './pages/starlink/StarLink';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 export const routes = [
 	{
@@ -23,25 +26,35 @@ export const routes = [
 			},
 			{
 				path: '/about',
-				element: <About />
+				element: <ProtectedRoute><About /></ProtectedRoute>
 			},
 			{
 				path: '/crew',
-				element: <Crew />
+				element: <ProtectedRoute><Crew /></ProtectedRoute>
 			},
 			{
 				path: '/rockets',
-				element: <Rockets />
+				element: <ProtectedRoute><Rockets /></ProtectedRoute>
 			},
 			{
 				path: '/launches',
-				element: <Launches />
+				element: <ProtectedRoute><Launches /></ProtectedRoute>
 			},
 			{
 				path: '/starlink',
-				element: <StarLink />
+				element: <ProtectedRoute><StarLink /></ProtectedRoute>
 			}
 		]
+	},
+	{
+		path: '/login',
+		element: <Login />,
+		errorElement: <Not_Found />
+	},
+	{
+		path: '/signup',
+		element: <Signup />,
+		errorElement: <Not_Found />
 	}
 ];
 

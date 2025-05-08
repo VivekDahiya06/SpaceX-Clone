@@ -1,10 +1,9 @@
 import { Button, Container, Image, SimpleGrid, Text, Title } from '@mantine/core';
 import image from '/images/404.webp';
 import classes from './Not_Found.module.scss';
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-const Not_Found: FC = () => {
+const Not_Found = () => {
   return (
     <Container className={classes.root}>
       <SimpleGrid

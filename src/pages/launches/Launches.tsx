@@ -11,10 +11,14 @@ const Launch_Card = React.lazy(() => import('../../components/card/launch_card/L
 const Launch_Modal = React.lazy(() => import('../../components/modal/launch_modal/Launch_Modal_Component'));
 
 const Launches = () => {
-  const modalIndex = useLaunchStore(state => state.modalIndex);
-  const [page, setPage] = useState<number>(1);
+
+  // Constants
   const itemsPerPage = 12;
 
+
+  // States
+  const modalIndex = useLaunchStore(state => state.modalIndex);
+  const [page, setPage] = useState<number>(1);
   const { data, isLoading, error } = useQuery({
     queryKey: ['launches'],
     queryFn: Launches_API.get_All_Launches,
@@ -27,6 +31,8 @@ const Launches = () => {
     keepPreviousData: true
   });
 
+
+  // Functions
   const paginatedData = useMemo(() => {
     if (!data) return [];
     const start = (page - 1) * itemsPerPage;
@@ -38,6 +44,8 @@ const Launches = () => {
     return data ? Math.ceil(data.length / itemsPerPage) : 1;
   }, [data]);
 
+
+  // JSX Render Components
   if (isLoading) {
     return (
       <main className={classes.loader}>
@@ -54,15 +62,17 @@ const Launches = () => {
     <main className={classes.main}>
       <div className={classes.filter}>This is filter</div>
       <div className={classes.cards}>
-        {paginatedData.map((Launch: Launch_Details_Type, index: number) => {
+        {
+          paginatedData.map((Launch: Launch_Details_Type, index: number) => {
           const globalIndex = (page - 1) * itemsPerPage + index;
           return (
             <React.Fragment key={globalIndex}>
               <Launch_Card Launch={Launch} index={globalIndex} />
-              {modalIndex === globalIndex && <Launch_Modal Launch={Launch} />}
+              { modalIndex === globalIndex && <Launch_Modal Launch={Launch} /> }
             </React.Fragment>
           );
-        })}
+          })
+        }
       </div>
 
       <Pagination

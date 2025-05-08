@@ -11,13 +11,16 @@ const Rocket_Modal = React.lazy(() => import('../../components/modal/rocket_Moda
 
 const Rockets = () => {
 
+  
   // States
   const modalIndex = useRocketStore(state => state.modalIndex);
-  const { data,isLoading ,error } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ['rockets'],
     queryFn: Rockets_API.get_All_Rockets,
   })
 
+
+  // JSX Render Components
   if (isLoading) {
     return (
       <main className={classes.loader}>
@@ -27,7 +30,7 @@ const Rockets = () => {
   }
 
   if (error) {
-    return <div>Error: </div>
+    return <div>Error loading Rockets data.</div>
   }
 
   return (
@@ -36,7 +39,8 @@ const Rockets = () => {
         Filter
       </div>
       <div className={classes.cards}>
-          {data.map((Rocket: Rocket_Details_Type, index: number) => (
+        {
+          data.map((Rocket: Rocket_Details_Type, index: number) => (
             <React.Fragment key={index}>
               <Rocket_Card Rocket={Rocket} index={index} />
               {
@@ -45,12 +49,11 @@ const Rockets = () => {
                 )
               }
             </React.Fragment>
-          ))}
+          ))
+        }
       </div>
-
-
     </main>
   )
 }
 
-export default Rockets
+export default Rockets;
