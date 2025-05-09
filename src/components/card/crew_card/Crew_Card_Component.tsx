@@ -52,7 +52,9 @@ const Crew_Card: FC<Props> = ({ Crew }) => {
                             <Text><code>Status:</code> <Badge color={Crew.status === 'active' ? 'green' : 'red'}>{Crew.status}</Badge></Text>
                             <Text><code>Launches:</code> <mark>{Crew.launches.length}</mark></Text>
                             <div className={classes.buttons}>
-                                <ActionIcon bg={'#fff'} radius={'xl'} size={30} component={Link} to={Crew.wikipedia}><BsWikipedia size={15} color='#000' /></ActionIcon>
+                                <ActionIcon bg={'#fff'} radius={'xl'} size={30} component={Link} to={Crew.wikipedia} target='_blank' rel='noopener noreferrer'>
+                                    <BsWikipedia size={15} color='#000' />
+                                </ActionIcon>
                             </div>
                         </div>
                     </div>
