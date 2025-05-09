@@ -1,19 +1,21 @@
+// Import Statements
 import axios from 'axios';
-import { ActionIcon, Loader, Text, Title } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
-import classes from './About.module.scss';
 import { About_Details_Type } from '../../Types/About.types.ts';
 import { BsTwitterX } from "react-icons/bs";
-
-
-const get_About_Company = async () => {
-  const response = await axios.get('https://api.spacexdata.com/v4/company');
-  return response.data;
-}
+import { ActionIcon, Loader, Text, Title } from '@mantine/core';
+import classes from './About.module.scss';
 
 const About = () => {
 
-  // States
+  // Function to Fetch data from API
+  const get_About_Company = async () => {
+    const response = await axios.get('https://api.spacexdata.com/v4/company');
+    return response.data;
+  }
+
+
+  // States & Hooks
   const { data, isLoading, error } = useQuery({
     queryKey: ['about'],
     queryFn: get_About_Company,
@@ -72,7 +74,7 @@ const About = () => {
             >
               <BsTwitterX color='#ffffff' size={25} />
             </ActionIcon>
-              <Text
+            <Text
               component='a'
               href={data?.links?.website}
               target="_blank"

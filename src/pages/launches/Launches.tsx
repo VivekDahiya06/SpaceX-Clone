@@ -1,26 +1,30 @@
-import axios from 'axios';
-import { ActionIcon, Button, Loader, Pagination } from '@mantine/core';
-import { useQuery } from '@tanstack/react-query';
-import classes from './Launches.module.scss';
-import { Launch_Details_Type } from '../../Types/Launch.types.ts';
+// Import Statements
 import React, { useMemo, useState } from 'react';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { Launch_Details_Type } from '../../Types/Launch.types.ts';
 import { useLaunchStore } from '../../store/Launch.store.ts';
 import { RiFilterFill, RiFilterLine } from 'react-icons/ri';
+import { ActionIcon, Button, Loader, Pagination } from '@mantine/core';
+import classes from './Launches.module.scss';
 const Launch_Card = React.lazy(() => import('../../components/card/launch_card/Launch_Card_Component'));
 const Launch_Modal = React.lazy(() => import('../../components/modal/launch_modal/Launch_Modal_Component'));
 
-const get_All_Launches = async () => {
-  const response = await axios.get('https://api.spacexdata.com/v5/launches');
-  return response.data;
-}
 
 const Launches = () => {
+
+  // Function to Fetch data from API
+  const get_All_Launches = async () => {
+    const response = await axios.get('https://api.spacexdata.com/v5/launches');
+    return response.data;
+  }
+
 
   // Constants
   const itemsPerPage = 12;
 
 
-  // States
+  // States & Hooks
   const modalIndex = useLaunchStore(state => state.modalIndex);
   const [page, setPage] = useState<number>(1);
   const [filter, setFilter] = useState({
@@ -66,7 +70,6 @@ const Launches = () => {
     });
   }, [data, filter]);
 
-
   const paginatedData = useMemo(() => {
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
@@ -91,13 +94,14 @@ const Launches = () => {
     return <div>Error loading launches.</div>;
   }
 
+  
   return (
     <main className={classes.main}>
       <div className={classes.filterContainer}>
         <div className={classes.filter}>
           <div className={classes.filterButtons}>
             <ActionIcon onClick={() => setFilter({ ...filter, open: !filter.open, type: '', value: '' })}>
-              { filter.open ? <RiFilterFill size={30} color='black' /> : <RiFilterLine size={30} color='black' /> }
+              {filter.open ? <RiFilterFill size={30} color='black' /> : <RiFilterLine size={30} color='black' />}
             </ActionIcon>
             {
               filter.open && (

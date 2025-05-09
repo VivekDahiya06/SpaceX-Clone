@@ -1,9 +1,12 @@
+// Import Statements
 import { FC } from "react";
-import classes from "./Header.module.scss";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Menu_Component from "../menu/Menu";
+import classes from "./Header.module.scss";
+
 
 const Header: FC = () => {
+
   // Constants
   const Navbar_Items = [
     { name: "About", url: "/about" },
@@ -14,7 +17,7 @@ const Header: FC = () => {
   ];
 
 
-  // States
+  // States & Hooks
   const navigate = useNavigate();
 
 

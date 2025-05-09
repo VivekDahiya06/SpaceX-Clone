@@ -1,10 +1,13 @@
+// Import Statements
 import { FC, useState } from "react";
 import { StarLink_Details_Type } from "../../../Types/StarLink.types";
-import { Button, Card, Text } from "@mantine/core";
-import classes from './StarLink_Card.module.scss';
 import satellite_background from '/images/satellite_background.png';
 import { useStarLinkStore } from "../../../store/StarLink.store";
+import { Button, Card, Text } from "@mantine/core";
+import classes from './StarLink_Card.module.scss';
 
+
+// Props Definition
 interface Props {
   StarLink: StarLink_Details_Type;
   index: number;
@@ -12,7 +15,7 @@ interface Props {
 
 const StarLink_Card: FC<Props> = ({ StarLink, index }) => {
 
-  // States
+  // States & Hooks
   const setModalIndex = useStarLinkStore(state => state.setModalIndex);
   const toggleModal = useStarLinkStore(state => state.toggleModal);
   const [hovered, setHovered] = useState<boolean>(false);

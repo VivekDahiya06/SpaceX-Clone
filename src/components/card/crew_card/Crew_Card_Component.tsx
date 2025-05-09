@@ -1,19 +1,21 @@
-import { ActionIcon, Badge, Card, Text, Transition } from '@mantine/core';
+// Import Statements
 import { FC, useState } from 'react';
-import { BsWikipedia } from "react-icons/bs";
 import { Link } from 'react-router-dom';
-import classes from './Crew_Card.module.scss';
 import { Crew_Details_Type } from '../../../Types/Crew.types';
+import { BsWikipedia } from "react-icons/bs";
+import { ActionIcon, Badge, Card, Text, Transition } from '@mantine/core';
+import classes from './Crew_Card.module.scss';
 
+// Props Definition
 interface Props {
     Crew: Crew_Details_Type;
 }
 
 const Crew_Card: FC<Props> = ({ Crew }) => {
 
-    // States
+    // States & Hooks
     const [hovered, setHovered] = useState<boolean>(false);
-    
+
 
     return (
         <Card

@@ -1,17 +1,19 @@
-import { StarLink_Details_Type } from '../../../Types/StarLink.types';
-import { Modal, Text } from '@mantine/core';
+// Import Statements
 import { FC } from 'react';
-import classes from './StarLink_Modal.module.scss'
+import { StarLink_Details_Type } from '../../../Types/StarLink.types';
 import { useStarLinkStore } from '../../../store/StarLink.store';
 import satellite_background from '/images/satellite_background.png';
+import { Modal, Text } from '@mantine/core';
+import classes from './StarLink_Modal.module.scss';
 
+// Props Definition
 interface Props{
     StarLink: StarLink_Details_Type;
 }
 
 const StarLink_Modal: FC<Props> = ({ StarLink }) => {
 
-    // States
+    // States & Hooks
     const showModal = useStarLinkStore(state => state.showModal);
     const toggleModal = useStarLinkStore(state => state.toggleModal);
 

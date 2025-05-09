@@ -1,11 +1,13 @@
-import { ActionIcon, Badge, Button, Card, Text, Transition } from "@mantine/core";
-import React, { FC, useState } from "react";
-import classes from './Launch_Card.module.scss';
+// Import Statements
+import { FC, useState } from "react";
 import { Link } from "react-router-dom";
-import { BsWikipedia, BsYoutube } from "react-icons/bs";
 import { Launch_Details_Type } from "../../../Types/Launch.types";
 import { useLaunchStore } from "../../../store/Launch.store";
+import { BsWikipedia, BsYoutube } from "react-icons/bs";
+import { ActionIcon, Badge, Button, Card, Text, Transition } from "@mantine/core";
+import classes from './Launch_Card.module.scss';
 
+// Props Definition
 interface Props {
   Launch: Launch_Details_Type;
   index: number
@@ -13,7 +15,7 @@ interface Props {
 
 const Launch_Card: FC<Props> = ({ Launch, index }) => {
 
-  // States
+  // States & Hooks
   const toggleModal = useLaunchStore(state => state.toggleModal);
   const setModalIndex = useLaunchStore(state => state.setModalIndex);
   const [hovered, setHovered] = useState<boolean>(false);
@@ -45,7 +47,7 @@ const Launch_Card: FC<Props> = ({ Launch, index }) => {
       }}
     >
 
-      {/* Card Section to show Image or Carousel */}
+      {/* Card Section to show Image */}
       <Card.Section>
         <img
           src={Launch.links.flickr.original[0] || Launch.links.flickr.small[0]}

@@ -1,11 +1,13 @@
-import { ActionIcon, Badge, Button, Card, Text, Transition } from "@mantine/core";
+// Import Statements
 import { FC, useState } from "react";
-import classes from "./Rocket_Card.module.scss";
 import { Link } from "react-router-dom";
-import { BsWikipedia } from "react-icons/bs";
 import { Rocket_Details_Type } from "../../../Types/Rocket.types";
 import { useRocketStore } from "../../../store/Rocket.store";
+import { BsWikipedia } from "react-icons/bs";
+import { ActionIcon, Badge, Button, Card, Text, Transition } from "@mantine/core";
+import classes from "./Rocket_Card.module.scss";
 
+// Props Definition
 interface Props {
   Rocket: Rocket_Details_Type;
   index: number;
@@ -13,17 +15,17 @@ interface Props {
 
 const Rocket_Card: FC<Props> = ({ Rocket, index }) => {
 
-  // States
+  // States & Hooks
   const toggleModal = useRocketStore(state => state.toggleModal);
   const setModalIndex = useRocketStore(state => state.setModalIndex);
   const [hovered, setHovered] = useState<boolean>(false);
 
 
-    // Functions
-    const handle_Details = (index: number) => {
-      setModalIndex(index);
-      toggleModal();
-    }
+  // Functions
+  const handle_Details = (index: number) => {
+    setModalIndex(index);
+    toggleModal();
+  }
 
   return (
     <Card

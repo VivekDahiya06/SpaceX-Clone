@@ -1,27 +1,30 @@
-import { ActionIcon, Button, Loader, Pagination } from '@mantine/core';
-import { useQuery } from '@tanstack/react-query';
-import classes from './StarLink.module.scss';
-import { StarLink_Details_Type } from '../../Types/StarLink.types.ts';
-import { useStarLinkStore } from '../../store/StarLink.store.ts';
+// Import Statements
 import React, { useMemo, useState } from 'react';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { StarLink_Details_Type } from '../../Types/StarLink.types.ts';
+import { useStarLinkStore } from '../../store/StarLink.store.ts';
 import { RiFilterFill, RiFilterLine } from 'react-icons/ri';
+import { ActionIcon, Button, Loader, Pagination } from '@mantine/core';
+import classes from './StarLink.module.scss';
 const StarLink_Card = React.lazy(() => import('../../components/card/starlink_card/StarLink_Card_Component'));
 const StarLink_Modal = React.lazy(() => import('../../components/modal/starlink_modal/StarLink_Modal_Component'));
 
 
-const get_All_StarLink = async () => {
-  const response = await axios.get('https://api.spacexdata.com/v4/starlink');
-  return response.data;
-}
-
 const StarLink = () => {
+
+  // Function to Fetch data from API
+  const get_All_StarLink = async () => {
+    const response = await axios.get('https://api.spacexdata.com/v4/starlink');
+    return response.data;
+  }
+
 
   // Constants
   const itemsPerPage = 12;
 
 
-  // States
+  // States & Hooks
   const modalIndex = useStarLinkStore(state => state.modalIndex);
   const [page, setPage] = useState<number>(1);
   const [filter, setFilter] = useState({
@@ -62,7 +65,6 @@ const StarLink = () => {
     });
   }, [data, filter]);
 
-
   const paginatedData = useMemo(() => {
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
@@ -87,13 +89,14 @@ const StarLink = () => {
     return <div>Error loading StarLink data.</div>;
   }
 
+
   return (
     <main className={classes.main}>
       <div className={classes.filterContainer}>
         <div className={classes.filter}>
           <div className={classes.filterButtons}>
             <ActionIcon onClick={() => setFilter({ ...filter, open: !filter.open, type: '', value: '' })}>
-{ filter.open ? <RiFilterFill size={30} color='black' /> : <RiFilterLine size={30} color='black' /> }
+              {filter.open ? <RiFilterFill size={30} color='black' /> : <RiFilterLine size={30} color='black' />}
             </ActionIcon>
             {
               filter.open && (
@@ -137,7 +140,6 @@ const StarLink = () => {
                 </Button.Group>
               )
             }
-
           </div>
         </div>
         {

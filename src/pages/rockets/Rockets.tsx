@@ -1,24 +1,25 @@
+// Import Statements
 import React from 'react';
 import axios from 'axios';
-import { Loader } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
-import classes from './Rockets.module.scss';
 import { Rocket_Details_Type } from '../../Types/Rocket.types.ts';
 import { useRocketStore } from '../../store/Rocket.store.ts';
+import { Loader } from '@mantine/core';
+import classes from './Rockets.module.scss';
 const Rocket_Card = React.lazy(() => import('../../components/card/rocket_card/Rocket_Card_Component'));
 const Rocket_Modal = React.lazy(() => import('../../components/modal/rocket_Modal/Rocket_Modal_Component'));
 
 
-const get_All_Rockets = async () => {
-  const response = await axios.get('https://api.spacexdata.com/v4/rockets');
-  return response.data;
-}
-
-
 const Rockets = () => {
-
   
-  // States
+  // Function to Fetch data from API
+  const get_All_Rockets = async () => {
+    const response = await axios.get('https://api.spacexdata.com/v4/rockets');
+    return response.data;
+  }
+
+
+  // States & Hooks
   const modalIndex = useRocketStore(state => state.modalIndex);
   const { data, isLoading, error } = useQuery({
     queryKey: ['rockets'],

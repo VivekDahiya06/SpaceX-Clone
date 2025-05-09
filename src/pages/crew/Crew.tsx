@@ -1,24 +1,28 @@
+// Import Statements
+import React, { Suspense, useMemo, useState } from 'react';
 import axios from 'axios';
-import { ActionIcon, Button, Loader, Pagination } from '@mantine/core';
-import { useQuery } from '@tanstack/react-query';
-import classes from './Crew.module.scss';
-import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import { Crew_Details_Type } from '../../Types/Crew.types.ts';
+import { useQuery } from '@tanstack/react-query';
 import { RiFilterFill, RiFilterLine } from "react-icons/ri";
+import { ActionIcon, Button, Loader, Pagination } from '@mantine/core';
+import classes from './Crew.module.scss';
 const Crew_Card = React.lazy(() => import('../../components/card/crew_card/Crew_Card_Component'));
 
-const get_All_Crew = async () => {
-  const response = await axios.get('https://api.spacexdata.com/v4/crew');
-  return response.data;
-}
 
 const Crew = () => {
+  
+  // Function to Fetch data from API
+  const get_All_Crew = async () => {
+    const response = await axios.get('https://api.spacexdata.com/v4/crew');
+    return response.data;
+  }
+
 
   // Constants
   const itemsPerPage = 12;
 
 
-  // States
+  // States & Hooks
   const [page, setPage] = useState<number>(1);
   const [filter, setFilter] = useState({
     open: false,
@@ -30,10 +34,6 @@ const Crew = () => {
     queryFn: get_All_Crew,
     keepPreviousData: true
   });
-
-  useEffect(() => {
-    console.log('filter', filter);
-  },[filter])
 
 
   // Functions

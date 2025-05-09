@@ -1,18 +1,20 @@
-import { ActionIcon, Badge, Image, Modal, Switch, Text } from '@mantine/core';
+// Import Statements
 import { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Rocket_Details_Type } from '../../../Types/Rocket.types';
 import { useRocketStore } from '../../../store/Rocket.store';
-import classes from './Rocket_Modal.module.scss'
 import { BsWikipedia } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { ActionIcon, Badge, Modal, Switch, Text } from '@mantine/core';
+import classes from './Rocket_Modal.module.scss';
 
-interface Props{
-    Rocket: Rocket_Details_Type
+// Props Definition
+interface Props {
+    Rocket: Rocket_Details_Type;
 }
 
 const Rocket_Modal: FC<Props> = ({ Rocket }) => {
 
-    // States
+    // States & Hooks
     const showModal = useRocketStore(state => state.showModal);
     const toggleModal = useRocketStore(state => state.toggleModal);
     const [metricSystem, useMetricSystem] = useState<boolean>(true);

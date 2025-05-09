@@ -1,8 +1,7 @@
+// Import Statements
+import { Link } from 'react-router-dom'
 import { Button } from '@mantine/core'
 import classes from './Home.module.scss'
-import { Link } from 'react-router-dom'
-
-
 
 const Home = () => {
 
@@ -54,6 +53,8 @@ const Home = () => {
       image: 'https://live.staticflickr.com/65535/51492841327_7da110faae_k.jpg'
     }
   ]
+
+
   return (
     <main className={classes.main}>
       {
@@ -92,4 +93,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home;

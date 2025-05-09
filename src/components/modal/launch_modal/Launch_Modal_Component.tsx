@@ -1,18 +1,20 @@
-import { ActionIcon, Badge, Modal, Text } from '@mantine/core';
+// Import Statements
 import { FC } from 'react';
-import { useLaunchStore } from '../../../store/Launch.store';
-import classes from './Launch_Modal.module.scss'
-import { Launch_Details_Type } from '../../../Types/Launch.types';
-import { BsWikipedia, BsYoutube } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { Launch_Details_Type } from '../../../Types/Launch.types';
+import { useLaunchStore } from '../../../store/Launch.store';
+import { BsWikipedia, BsYoutube } from 'react-icons/bs';
+import { ActionIcon, Badge, Modal, Text } from '@mantine/core';
+import classes from './Launch_Modal.module.scss';
 
+// Props Definition
 interface Props {
-    Launch: Launch_Details_Type
+    Launch: Launch_Details_Type;
 }
 
 const Launch_Modal: FC<Props> = ({ Launch }) => {
 
-    // States
+    // States & Hooks
     const showModal = useLaunchStore(state => state.showModal);
     const toggleModal = useLaunchStore(state => state.toggleModal);
 

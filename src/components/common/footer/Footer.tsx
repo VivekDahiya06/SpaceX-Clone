@@ -1,5 +1,8 @@
-import { BsTwitterX, BsLinkedin, BsInstagram, BsGithub } from "react-icons/bs";
+// Import Statements
+import { BsTwitterX, BsLinkedin, BsInstagram } from "react-icons/bs";
 import classes from "./Footer.module.scss";
+
+
 const Footer = () => {
     return (
         <footer className={classes.footer}>
@@ -30,4 +33,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default Footer;
