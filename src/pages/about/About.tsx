@@ -79,7 +79,7 @@ const About = () => {
               href={data?.links?.website}
               target="_blank"
               rel="noopener noreferrer">
-              For More Details Visit <mark>SPACEX</mark>
+              For More Details Visit <span style={{ color: '#0015ff', textDecoration: 'underline' }}>SPACEX</span>
             </Text>
           </div>
         </div>

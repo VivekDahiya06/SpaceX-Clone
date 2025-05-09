@@ -30,36 +30,36 @@ const StarLink_Modal: FC<Props> = ({ StarLink }) => {
                 </div>
                 <div className={classes.modalContent}>
                     <div className={classes.modalDetails}>
-                        <Text><code>Satellite ID:</code> <mark>{StarLink.spaceTrack.OBJECT_ID}</mark></Text>
-                        <Text><code>Latitude:</code> <mark>{StarLink.latitude}</mark></Text>
-                        <Text><code>Longitude:</code> <mark>{StarLink.longitude}</mark></Text>
-                        <Text><code>Height:</code> <mark>{StarLink.height_km.toFixed(3)} km</mark></Text>
-                        <Text><code>Velocity :</code> <mark>{StarLink.velocity_kms.toFixed(3)} km/s</mark></Text>
-                        <Text><code>Launch Date:</code> <mark>{StarLink.spaceTrack.LAUNCH_DATE}</mark></Text>
-                        <Text><code>Launch Site:</code> <mark>{StarLink.spaceTrack.SITE}</mark></Text>
-                        <Text><code>Classification Type:</code> <mark>{StarLink.spaceTrack.CLASSIFICATION_TYPE}</mark></Text>
-                        <Text><code>Originator:</code> <mark>{StarLink.spaceTrack.ORIGINATOR}</mark></Text>
-                        <Text><code>OMM Version:</code> <mark>{StarLink.spaceTrack.CCSDS_OMM_VERS}</mark></Text>
-                        <Text><code>File ID:</code> <mark>{StarLink.spaceTrack.FILE}</mark></Text>
-                        <Text><code>GP Identifier:</code> <mark>{StarLink.spaceTrack.GP_ID}</mark></Text>
-                        <Text><code>Epoch Time: </code><mark>{StarLink.spaceTrack.EPOCH}</mark></Text>
-                        <Text><code>Mean Motion: </code><mark>{StarLink.spaceTrack.MEAN_MOTION} revs. per day</mark></Text>
-                        <Text><code>Orbital Eccentricity: </code><mark>{StarLink.spaceTrack.ECCENTRICITY}</mark></Text>
-                        <Text><code>Inclination: </code><mark>{StarLink.spaceTrack.INCLINATION}°</mark></Text>
-                        <Text><code>RA of Ascending Node: </code><mark>{StarLink.spaceTrack.RA_OF_ASC_NODE}°</mark></Text>
-                        <Text><code>Argument of Perigee: </code><mark>{StarLink.spaceTrack.ARG_OF_PERICENTER}°</mark></Text>
-                        <Text><code>Mean Anomaly: </code><mark>{StarLink.spaceTrack.MEAN_ANOMALY}°</mark></Text>
-                        <Text><code>Semi-Major Axis: </code><mark>{StarLink.spaceTrack.SEMIMAJOR_AXIS} km</mark></Text>
-                        <Text><code>Apogee Altitude: </code><mark>{StarLink.spaceTrack.APOAPSIS} km</mark></Text>
-                        <Text><code>Perigee Altitude: </code><mark>{StarLink.spaceTrack.PERIAPSIS} km</mark></Text>
-                        <Text><code>Orbital Period: </code><mark>{StarLink.spaceTrack.PERIOD} mins</mark></Text>
-                        <Text><code>BSTAR Drag Term: </code><mark>{StarLink.spaceTrack.BSTAR} mins</mark></Text>
-                        <Text><code>Mean Motion Derivative: </code><mark>{StarLink.spaceTrack.MEAN_MOTION_DOT} mins</mark></Text>
-                        <Text><code>Mean Motion 2nd Derivative: </code><mark>{StarLink.spaceTrack.MEAN_MOTION_DDOT} mins</mark></Text>
-                        <Text><code>Reference Frame: </code><mark>{StarLink.spaceTrack.REF_FRAME} mins</mark></Text>
-                        <Text><code>Time System: </code><mark>{StarLink.spaceTrack.TIME_SYSTEM} mins</mark></Text>
-                        <Text><code>Ephemeris Type: </code><mark>{StarLink.spaceTrack.EPHEMERIS_TYPE} mins</mark></Text>
-                        <Text><code>Element Theory: </code><mark>{StarLink.spaceTrack.MEAN_ELEMENT_THEORY} mins</mark></Text>
+                        <Text><code>Satellite ID:</code> <span>{StarLink.spaceTrack.OBJECT_ID}</span></Text>
+                        <Text><code>Latitude:</code> <span>{StarLink.latitude}</span></Text>
+                        <Text><code>Longitude:</code> <span>{StarLink.longitude}</span></Text>
+                        <Text><code>Height:</code> <span>{StarLink.height_km.toFixed(3)} km</span></Text>
+                        <Text><code>Velocity :</code> <span>{StarLink.velocity_kms.toFixed(3)} km/s</span></Text>
+                        <Text><code>Launch Date:</code> <span>{StarLink.spaceTrack.LAUNCH_DATE}</span></Text>
+                        <Text><code>Launch Site:</code> <span>{StarLink.spaceTrack.SITE}</span></Text>
+                        <Text><code>Classification Type:</code> <span>{StarLink.spaceTrack.CLASSIFICATION_TYPE}</span></Text>
+                        <Text><code>Originator:</code> <span>{StarLink.spaceTrack.ORIGINATOR}</span></Text>
+                        <Text><code>OMM Version:</code> <span>{StarLink.spaceTrack.CCSDS_OMM_VERS}</span></Text>
+                        <Text><code>File ID:</code> <span>{StarLink.spaceTrack.FILE}</span></Text>
+                        <Text><code>GP Identifier:</code> <span>{StarLink.spaceTrack.GP_ID}</span></Text>
+                        <Text><code>Epoch Time: </code><span>{StarLink.spaceTrack.EPOCH}</span></Text>
+                        <Text><code>Mean Motion: </code><span>{StarLink.spaceTrack.MEAN_MOTION} revs. per day</span></Text>
+                        <Text><code>Orbital Eccentricity: </code><span>{StarLink.spaceTrack.ECCENTRICITY}</span></Text>
+                        <Text><code>Inclination: </code><span>{StarLink.spaceTrack.INCLINATION}°</span></Text>
+                        <Text><code>RA of Ascending Node: </code><span>{StarLink.spaceTrack.RA_OF_ASC_NODE}°</span></Text>
+                        <Text><code>Argument of Perigee: </code><span>{StarLink.spaceTrack.ARG_OF_PERICENTER}°</span></Text>
+                        <Text><code>Mean Anomaly: </code><span>{StarLink.spaceTrack.MEAN_ANOMALY}°</span></Text>
+                        <Text><code>Semi-Major Axis: </code><span>{StarLink.spaceTrack.SEMIMAJOR_AXIS} km</span></Text>
+                        <Text><code>Apogee Altitude: </code><span>{StarLink.spaceTrack.APOAPSIS} km</span></Text>
+                        <Text><code>Perigee Altitude: </code><span>{StarLink.spaceTrack.PERIAPSIS} km</span></Text>
+                        <Text><code>Orbital Period: </code><span>{StarLink.spaceTrack.PERIOD} mins</span></Text>
+                        <Text><code>BSTAR Drag Term: </code><span>{StarLink.spaceTrack.BSTAR} mins</span></Text>
+                        <Text><code>Mean Motion Derivative: </code><span>{StarLink.spaceTrack.MEAN_MOTION_DOT} mins</span></Text>
+                        <Text><code>Mean Motion 2nd Derivative: </code><span>{StarLink.spaceTrack.MEAN_MOTION_DDOT} mins</span></Text>
+                        <Text><code>Reference Frame: </code><span>{StarLink.spaceTrack.REF_FRAME} mins</span></Text>
+                        <Text><code>Time System: </code><span>{StarLink.spaceTrack.TIME_SYSTEM} mins</span></Text>
+                        <Text><code>Ephemeris Type: </code><span>{StarLink.spaceTrack.EPHEMERIS_TYPE} mins</span></Text>
+                        <Text><code>Element Theory: </code><span>{StarLink.spaceTrack.MEAN_ELEMENT_THEORY} mins</span></Text>
                     </div>
                 </div>
             </section>

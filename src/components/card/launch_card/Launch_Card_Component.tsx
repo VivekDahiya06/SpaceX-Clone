@@ -86,10 +86,10 @@ const Launch_Card: FC<Props> = ({ Launch, index }) => {
             <div className={classes.content}>
               <div className={classes.info}>
                 <Text>
-                  <code>Name:</code> <mark>{Launch.name}</mark>
+                  <code>Name:</code> <span>{Launch.name}</span>
                 </Text>
                 <Text>
-                  <code>Date(UTC):</code> <mark>{new Date(Launch.date_utc).toUTCString()}</mark>
+                  <code>Date(UTC):</code> <span>{new Date(Launch.date_utc).toUTCString()}</span>
                 </Text>
                 <Text>
                   <code>Upcoming:</code>{" "}
@@ -109,6 +109,8 @@ const Launch_Card: FC<Props> = ({ Launch, index }) => {
                     radius="xl"
                     component={Link}
                     to={Launch.links.wikipedia}
+                    target="_blank"
+                    rel='noreferrer noopener'
                     size={30}
                   >
                     <BsWikipedia size={15} color={"#000"} />
@@ -118,6 +120,8 @@ const Launch_Card: FC<Props> = ({ Launch, index }) => {
                     radius="xl"
                     component={Link}
                     to={Launch.links.webcast}
+                    target="_blank"
+                    rel='noreferrer noopener'
                     size={30}
                   >
                     <BsYoutube size={15} color={"#000"} />

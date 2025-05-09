@@ -31,35 +31,37 @@ const Launch_Modal: FC<Props> = ({ Launch }) => {
                 </div>
                 <div className={classes.modalContent}>
                     <div className={classes.modalDetails}>
-                        { Launch.details && <Text><code>Details: </code>{Launch.details}</Text> }
-                        <Text><code>Flight Number: </code><mark>{Launch.flight_number}</mark></Text>
+                        {Launch.details && <Text><code>Details: </code>{Launch.details}</Text>}
+                        <Text><code>Flight Number: </code><span>{Launch.flight_number}</span></Text>
                         <Text><code>Upcoming: </code>
                             <Badge color={Launch.upcoming ? "green" : "red"}>{Launch.upcoming ? "Yes" : "No"}</Badge>
                         </Text>
-                        <Text><code>Launch Date(UTC):</code> <mark>{new Date(Launch.date_utc).toUTCString()}</mark></Text>
-                        <Text><code>Launch Date(Local):</code> <mark>{new Date(Launch.date_local).toLocaleString()}</mark></Text>
-                        <Text><code>Static Fire Date(UTC):</code> <mark>{new Date(Launch.static_fire_date_utc).toUTCString()}</mark></Text>
-                        <Text><code>Launch Date Precision:</code> <mark>{Launch.date_precision}</mark></Text>
-                        <Text><code>Launch Success: </code><mark>{Launch.success ? "Yes" : "No"}</mark></Text>
-                        <Text><code>Failures: </code><mark>{Launch.failures.length}</mark></Text>
-                        <Text><code>Crew Members: </code><mark>{Launch.crew.length}</mark></Text>
+                        <Text><code>Launch Date(UTC):</code> <span>{new Date(Launch.date_utc).toUTCString()}</span></Text>
+                        <Text><code>Launch Date(Local):</code> <span>{new Date(Launch.date_local).toLocaleString()}</span></Text>
+                        <Text><code>Static Fire Date(UTC):</code> <span>{new Date(Launch.static_fire_date_utc).toUTCString()}</span></Text>
+                        <Text><code>Launch Date Precision:</code> <span>{Launch.date_precision}</span></Text>
+                        <Text><code>Launch Success: </code><span>{Launch.success ? "Yes" : "No"}</span></Text>
+                        <Text><code>Failures: </code><span>{Launch.failures.length}</span></Text>
+                        <Text><code>Crew Members: </code><span>{Launch.crew.length}</span></Text>
 
                         {/* Cores */}
                         <Text fw={800} mt="xl" size="lg">Core Stage</Text>
-                        <Text><code>No. of Cores: </code><mark>{Launch.cores.length}</mark></Text>
-                        <Text><code>Grid Fins: </code><mark>{Launch.cores[0].gridfins ? 'Yes' : 'No'}</mark></Text>
-                        <Text><code>Legs: </code><mark>{Launch.cores[0].legs ? 'Yes' : 'No'}</mark></Text>
-                        <Text><code>Flight Count: </code><mark>{Launch.cores[0].flight}</mark></Text>
-                        <Text><code>Reused: </code><mark>{Launch.cores[0].reused ? 'Yes' : 'No'}</mark></Text>
-                        <Text><code>Landing Attempt: </code><mark>{Launch.cores[0].landing_attempt ? 'Yes' : 'No'}</mark></Text>
-                        <Text><code>Landing Success: </code><mark>{Launch.cores[0].landing_success ? 'Yes' : 'No'}</mark></Text>
-                        {Launch.cores[0].landing_type && <Text><code>Landing Type: </code><mark>{Launch.cores[0].landing_type}</mark></Text>}
-                        
+                        <Text><code>No. of Cores: </code><span>{Launch.cores.length}</span></Text>
+                        <Text><code>Grid Fins: </code><span>{Launch.cores[0].gridfins ? 'Yes' : 'No'}</span></Text>
+                        <Text><code>Legs: </code><span>{Launch.cores[0].legs ? 'Yes' : 'No'}</span></Text>
+                        <Text><code>Flight Count: </code><span>{Launch.cores[0].flight}</span></Text>
+                        <Text><code>Reused: </code><span>{Launch.cores[0].reused ? 'Yes' : 'No'}</span></Text>
+                        <Text><code>Landing Attempt: </code><span>{Launch.cores[0].landing_attempt ? 'Yes' : 'No'}</span></Text>
+                        <Text><code>Landing Success: </code><span>{Launch.cores[0].landing_success ? 'Yes' : 'No'}</span></Text>
+                        {Launch.cores[0].landing_type && <Text><code>Landing Type: </code><span>{Launch.cores[0].landing_type}</span></Text>}
+
                         <div className={classes.externalLinks}>
                             <ActionIcon
                                 radius="xl"
                                 component={Link}
                                 to={Launch.links.wikipedia}
+                                target="_blank"
+                                rel='noreferrer noopener'
                                 size={50}
                                 style={{ background: "#000000dd" }}
                             >
@@ -69,6 +71,8 @@ const Launch_Modal: FC<Props> = ({ Launch }) => {
                                 radius="xl"
                                 component={Link}
                                 to={Launch.links.webcast}
+                                target="_blank"
+                                rel='noreferrer noopener'
                                 size={50}
                                 style={{ background: "#000000dd" }}
                             >

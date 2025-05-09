@@ -85,10 +85,10 @@ const Rocket_Card: FC<Props> = ({ Rocket, index }) => {
             <div className={classes.content}>
               <div className={classes.info}>
                 <Text>
-                  <code>Name:</code> <mark>{Rocket.name}</mark>
+                  <code>Name:</code> <span>{Rocket.name}</span>
                 </Text>
                 <Text>
-                  <code>Company:</code> <mark>{Rocket.company}</mark>
+                  <code>Company:</code> <span>{Rocket.company}</span>
                 </Text>
                 <Text>
                   <code>Active:</code>{" "}
@@ -107,6 +107,8 @@ const Rocket_Card: FC<Props> = ({ Rocket, index }) => {
                   radius="xl"
                   component={Link}
                   to={Rocket.wikipedia}
+                  target="_blank"
+                  rel='noreferrer noopener'
                   size={30}
                 >
                   <BsWikipedia size={15} color={"#000"} />

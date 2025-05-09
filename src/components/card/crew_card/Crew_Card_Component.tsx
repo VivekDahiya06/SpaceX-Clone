@@ -47,10 +47,10 @@ const Crew_Card: FC<Props> = ({ Crew }) => {
                         className={classes.content}
                         style={{ ...TransitionStyles, zIndex: 1, padding: '1em', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: '#0000009a', width: '100%', height: '100%' }}>
                         <div className={classes.details}>
-                            <Text><code>Name:</code> <mark>{Crew.name}</mark></Text>
-                            <Text><code>Agency:</code> <mark>{Crew.agency}</mark></Text>
+                            <Text><code>Name:</code> <span>{Crew.name}</span></Text>
+                            <Text><code>Agency:</code> <span>{Crew.agency}</span></Text>
                             <Text><code>Status:</code> <Badge color={Crew.status === 'active' ? 'green' : 'red'}>{Crew.status}</Badge></Text>
-                            <Text><code>Launches:</code> <mark>{Crew.launches.length}</mark></Text>
+                            <Text><code>Launches:</code> <span>{Crew.launches.length}</span></Text>
                             <div className={classes.buttons}>
                                 <ActionIcon bg={'#fff'} radius={'xl'} size={30} component={Link} to={Crew.wikipedia} target='_blank' rel='noopener noreferrer'>
                                     <BsWikipedia size={15} color='#000' />
