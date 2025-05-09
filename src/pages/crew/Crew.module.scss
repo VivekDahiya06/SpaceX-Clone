@@ -24,11 +24,11 @@
 
 .filter {
     @include flex-box(column);
-    padding: 0.5em 0.8em;
+    padding: 0.3em 1.3em;
     width: 100%;
-    height: 8vh;
+    height: 9dvh;
     border: 1px solid rgba(0, 0, 0, 0.911);
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 .filterButtons{
@@ -50,7 +50,7 @@
         padding: 0.5rem 1rem;
         border-radius: 8px;
         border: 1px solid #ccc;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         width: 800px;
         max-width: 100%;
     }

@@ -5,7 +5,7 @@ import { StarLink_Details_Type } from '../../Types/StarLink.types.ts';
 import { useStarLinkStore } from '../../store/StarLink.store.ts';
 import React, { useMemo, useState } from 'react';
 import axios from 'axios';
-import { FaFilter } from 'react-icons/fa';
+import { RiFilterFill, RiFilterLine } from 'react-icons/ri';
 const StarLink_Card = React.lazy(() => import('../../components/card/starlink_card/StarLink_Card_Component'));
 const StarLink_Modal = React.lazy(() => import('../../components/modal/starlink_modal/StarLink_Modal_Component'));
 
@@ -93,7 +93,7 @@ const StarLink = () => {
         <div className={classes.filter}>
           <div className={classes.filterButtons}>
             <ActionIcon onClick={() => setFilter({ ...filter, open: !filter.open, type: '', value: '' })}>
-              <FaFilter color={filter.open ? '#848eff' : 'black'} />
+{ filter.open ? <RiFilterFill size={30} color='black' /> : <RiFilterLine size={30} color='black' /> }
             </ActionIcon>
             {
               filter.open && (

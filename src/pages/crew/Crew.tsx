@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import classes from './Crew.module.scss';
 import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import { Crew_Details_Type } from '../../Types/Crew.types.ts';
-import { FaFilter } from "react-icons/fa";
+import { RiFilterFill, RiFilterLine } from "react-icons/ri";
 const Crew_Card = React.lazy(() => import('../../components/card/crew_card/Crew_Card_Component'));
 
 const get_All_Crew = async () => {
@@ -88,7 +88,7 @@ const Crew = () => {
           <div className={classes.filter}>
             <div className={classes.filterButtons}>
               <ActionIcon onClick={() => setFilter({ ...filter, open: !filter.open, type: '' })}>
-                <FaFilter color={filter.open ? '#848eff' : 'black'} />
+              { filter.open ? <RiFilterFill size={30} color='black' /> : <RiFilterLine size={30} color='black' /> }
               </ActionIcon>
               {
                 filter.open && (

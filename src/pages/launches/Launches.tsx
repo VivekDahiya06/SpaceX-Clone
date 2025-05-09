@@ -5,7 +5,7 @@ import classes from './Launches.module.scss';
 import { Launch_Details_Type } from '../../Types/Launch.types.ts';
 import React, { useMemo, useState } from 'react';
 import { useLaunchStore } from '../../store/Launch.store.ts';
-import { FaFilter } from 'react-icons/fa';
+import { RiFilterFill, RiFilterLine } from 'react-icons/ri';
 const Launch_Card = React.lazy(() => import('../../components/card/launch_card/Launch_Card_Component'));
 const Launch_Modal = React.lazy(() => import('../../components/modal/launch_modal/Launch_Modal_Component'));
 
@@ -97,7 +97,7 @@ const Launches = () => {
         <div className={classes.filter}>
           <div className={classes.filterButtons}>
             <ActionIcon onClick={() => setFilter({ ...filter, open: !filter.open, type: '', value: '' })}>
-              <FaFilter color={filter.open ? '#848eff' : 'black'} />
+              { filter.open ? <RiFilterFill size={30} color='black' /> : <RiFilterLine size={30} color='black' /> }
             </ActionIcon>
             {
               filter.open && (
