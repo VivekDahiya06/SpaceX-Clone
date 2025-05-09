@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { Loader, Pagination } from '@mantine/core';
+import { ActionIcon, Button, Loader, Pagination } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import classes from './Launches.module.scss';
 import { Launch_Details_Type } from '../../Types/Launch.types.ts';
 import React, { useMemo, useState } from 'react';
 import { useLaunchStore } from '../../store/Launch.store.ts';
+import { FaFilter } from 'react-icons/fa';
 const Launch_Card = React.lazy(() => import('../../components/card/launch_card/Launch_Card_Component'));
 const Launch_Modal = React.lazy(() => import('../../components/modal/launch_modal/Launch_Modal_Component'));
 
@@ -22,6 +23,11 @@ const Launches = () => {
   // States
   const modalIndex = useLaunchStore(state => state.modalIndex);
   const [page, setPage] = useState<number>(1);
+  const [filter, setFilter] = useState({
+    open: false,
+    type: '',
+    value: ''
+  });
   const { data, isLoading, error } = useQuery({
     queryKey: ['launches'],
     queryFn: get_All_Launches,
@@ -36,16 +42,40 @@ const Launches = () => {
 
 
   // Functions
-  const paginatedData = useMemo(() => {
+  const filteredData = useMemo(() => {
     if (!data) return [];
+    const value = filter.value.trim().toLowerCase();
+
+    return data.filter((launch: Launch_Details_Type) => {
+      if (filter.type === 'Name') {
+        return launch.name?.toLowerCase().includes(value);
+      }
+      else if (filter.type === 'Upcoming') {
+        if (value === 'yes') return launch.upcoming === true;
+        if (value === 'no') return launch.upcoming === false;
+        return true;
+      }
+      else if (filter.type === 'Date') {
+        if (value === 'asc') return new Date(launch.date_utc).getTime() < new Date(launch.date_local).getTime();
+        if (value === 'desc') return new Date(launch.date_utc).getTime() > new Date(launch.date_local).getTime();
+        return true;
+      }
+      else {
+        return launch.flight_number?.toString().includes(value);
+      }
+    });
+  }, [data, filter]);
+
+
+  const paginatedData = useMemo(() => {
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return data.slice(start, end);
-  }, [data, page]);
+    return filteredData.slice(start, end);
+  }, [filteredData, page]);
 
   const totalPages = useMemo(() => {
-    return data ? Math.ceil(data.length / itemsPerPage) : 1;
-  }, [data]);
+    return Math.max(1, Math.ceil(filteredData.length / itemsPerPage));
+  }, [filteredData]);
 
 
   // JSX Render Components
@@ -63,16 +93,83 @@ const Launches = () => {
 
   return (
     <main className={classes.main}>
+      <div className={classes.filterContainer}>
+        <div className={classes.filter}>
+          <div className={classes.filterButtons}>
+            <ActionIcon onClick={() => setFilter({ ...filter, open: !filter.open, type: '', value: '' })}>
+              <FaFilter color={filter.open ? '#848eff' : 'black'} />
+            </ActionIcon>
+            {
+              filter.open && (
+                <Button.Group style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+                  <Button
+                    variant='outline'
+                    style={{
+                      backgroundColor: filter.type === 'Name' ? 'black' : 'white',
+                      color: filter.type === 'Name' ? 'white' : 'black'
+                    }}
+                    onClick={() => setFilter({ ...filter, type: 'Name' })}>
+                    Name
+                  </Button>
+                  <Button
+                    variant='outline'
+                    style={{
+                      backgroundColor: filter.type === 'Flight Number' ? 'black' : 'white',
+                      color: filter.type === 'Flight Number' ? 'white' : 'black'
+                    }}
+                    onClick={() => setFilter({ ...filter, type: 'Flight Number' })}>
+                    Flight Number
+                  </Button>
+                  <Button
+                    variant='outline'
+                    style={{
+                      backgroundColor: filter.type === 'Upcoming' ? 'black' : 'white',
+                      color: filter.type === 'Upcoming' ? 'white' : 'black'
+                    }}
+                    onClick={() => setFilter({ ...filter, type: 'Upcoming' })}>
+                    Upcoming
+                  </Button>
+                  <Button
+                    variant='outline'
+                    style={{
+                      backgroundColor: filter.type === 'Date' ? 'black' : 'white',
+                      color: filter.type === 'Date' ? 'white' : 'black'
+                    }}
+                    onClick={() => setFilter({ ...filter, type: 'Date' })}>
+                    Date
+                  </Button>
+                </Button.Group>
+              )
+            }
+
+          </div>
+        </div>
+        {
+          filter.type && (
+            <div className={classes.filterInputContainer}>
+              <input
+                type="text"
+                placeholder={`Search by ${filter.type}`}
+                value={filter.value}
+                onChange={(e) => {
+                  setPage(1);
+                  setFilter({ ...filter, value: e.target.value });
+                }}
+              />
+            </div>
+          )
+        }
+      </div>
       <div className={classes.cards}>
         {
           paginatedData.map((Launch: Launch_Details_Type, index: number) => {
-          const globalIndex = (page - 1) * itemsPerPage + index;
-          return (
-            <React.Fragment key={globalIndex}>
-              <Launch_Card Launch={Launch} index={globalIndex} />
-              { modalIndex === globalIndex && <Launch_Modal Launch={Launch} /> }
-            </React.Fragment>
-          );
+            const globalIndex = (page - 1) * itemsPerPage + index;
+            return (
+              <React.Fragment key={globalIndex}>
+                <Launch_Card Launch={Launch} index={globalIndex} />
+                {modalIndex === globalIndex && <Launch_Modal Launch={Launch} />}
+              </React.Fragment>
+            );
           })
         }
       </div>
