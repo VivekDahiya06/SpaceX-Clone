@@ -61,7 +61,7 @@ const About = () => {
           <Text><strong>Launch Sites:</strong> {data?.launch_sites}</Text>
           <Text><strong>Test Sites:</strong> {data?.test_sites}</Text>
           <Text><strong>Headquarters:</strong> {data?.headquarters?.address}, {data?.headquarters?.city}, {data?.headquarters?.state}</Text>
-          <Text mt="md"><strong>Summary:</strong> {data?.summary}</Text>
+          <Text mt="md" style={{textAlign: 'justify'}}><strong>Summary:</strong> {data?.summary}</Text>
           <div className={classes.externalLinks}>
             <ActionIcon
               component='a'

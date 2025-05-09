@@ -31,7 +31,7 @@ const Launch_Modal: FC<Props> = ({ Launch }) => {
                 </div>
                 <div className={classes.modalContent}>
                     <div className={classes.modalDetails}>
-                        {Launch.details && <Text><code>Details: </code>{Launch.details}</Text>}
+                        {Launch.details && <Text style={{textAlign: 'justify'}}><code>Details: </code>{Launch.details}</Text>}
                         <Text><code>Flight Number: </code><span>{Launch.flight_number}</span></Text>
                         <Text><code>Upcoming: </code>
                             <Badge color={Launch.upcoming ? "green" : "red"}>{Launch.upcoming ? "Yes" : "No"}</Badge>

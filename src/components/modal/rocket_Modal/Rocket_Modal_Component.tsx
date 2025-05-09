@@ -41,7 +41,7 @@ const Rocket_Modal: FC<Props> = ({ Rocket }) => {
                 </div>
                 <div className={classes.modalContent}>
                     <div className={classes.modalDetails}>
-                        <Text><code>Description: </code>{Rocket.description}</Text>
+                        <Text style={{ textAlign: 'justify' }}><code>Description: </code>{Rocket.description}</Text>
                         <Text><code>Company: </code><span>{Rocket.company}</span></Text>
                         <Text><code>Active: </code>
                             <Badge color={Rocket.active ? "green" : "red"}>{Rocket.active ? "Yes" : "No"}</Badge>
