@@ -36,7 +36,7 @@ The project is organized as follows:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/VivekDahiya06/SpaceX-Clone.git
    ```
 
 2. Navigate to the project directory.
